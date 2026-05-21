@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.ofg">
+<head>
+<meta charset="UTF-8">
+<title>ログイン画面</title>
+</head>
+<body>
+    <h1>ログイン</h1>
+	<p th:if="${errorMessage}" th:text="${errorMessage}"></p>
+    <form method="post" th:action="@{login}" th:object="${team2LoginForm}">
+        <h4 th:text="ログインID"></h4>
+        <input type="text" th:field="*{loginId}" />
+        <br>
+        <span th:if="${#fields.hasErrors('loginId')}" th:errors="*{loginId}"></span>
+        <br>
+        <h4 th:text="パスワード"></h4>
+        <br>
+        <input type="password" th:field="*{password}" />
+        <br>
+		<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+        <br>
+        <br>
+        <input type="submit" value="ログイン" />
+    </form>
+    <br>
+    <a href="register">新規登録はこちら</a>
+</body>
+</html>

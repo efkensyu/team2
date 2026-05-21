@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.ofg">
+<head>
+<meta charset="UTF-8">
+<title>ホーム画面</title>
+</head>
+<body>
+	<h1>ホーム画面</h1>
+	<p>こんにちは！<span th:text="${team2LoginForm.loginId}"></span>さん！</p>
+	<form th:action="@{/team2/logout}" method="post">
+		<button type="submit">ログアウト</button>
+	</form>
+	<h4>現在登録されているuser一覧</h4>
+	<table border="1">
+		<tr>
+			<td>ユーザID</td>
+			<td>ログインID</td>
+			<td>パスワード</td>
+			<td>ユーザ名</td>
+			<td>登録日時</td>
+		</tr>
+		<tr th:each="user : ${users}">
+			<td th:text="${user.userId}"></td>
+			<td th:text="${user.loginId}"></td>
+			<td th:text="${user.password}"></td>
+			<td th:text="${user.userName}"></td>
+			<td th:text="${user.createdAt}"></td>
+		</tr>
+	</table>
+</body>
+</html>

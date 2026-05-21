@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.ofg">
+
+<head>
+	<meta charset="UTF-8">
+	<title>ユーザ新規登録</title>
+</head>
+
+<body>
+	<h1>ユーザ新規登録</h1>
+	<p th:if="${errorMessage}" th:text="${errorMessage}"></p>
+	<form method="post" th:action="@{register}" th:object="${team2RegisterForm}">
+		<h4 th:text="ログインID"></h4>
+		<input type="text" th:field="*{loginId}" />
+		<br>
+		<span th:if="${#fields.hasErrors('loginId')}" th:errors="*{loginId}"></span>
+		<br>
+		<h4 th:text="パスワード"></h4>
+		<input type="password" th:field="*{password}" />
+		<br>
+		<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+		<br>
+		<h4 th:text="パスワード（確認）"></h4>
+		<input type="password" th:field="*{confirmPassword}" />
+		<br>
+		<span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></span>
+		<br>
+		<span th:if="${confirmPasswordError}" th:text="${confirmPasswordError}"></span>
+		<h4 th:text="ユーザ名"></h4>
+		<input type="text" th:field="*{userName}" />
+		<br>
+		<span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
+		<br>
+		<br>
+		<input type="submit" value="登録" />
+	</form>
+	<br>
+	<a href="/team2/login">すでにアカウントをお持ちの方はこちら</a>
+</body>
+
+</html>
