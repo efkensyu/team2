@@ -26,7 +26,6 @@ public class Team2HomeController {
 		Team2LoginForm team2LoginForm = (Team2LoginForm) session.getAttribute("team2LoginForm");
 		List<Team2User> users = userRepository.findAll();
 		model.addAttribute("users", users);
-
 		model.addAttribute("team2LoginForm", team2LoginForm);
 		System.out.println("ホーム画面へ遷移：" + team2LoginForm.getLoginId());
 		return "team2/team2_home";
