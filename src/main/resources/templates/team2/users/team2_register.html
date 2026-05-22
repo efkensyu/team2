@@ -3,10 +3,12 @@
 
 <head>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="/team2/css/team2_header.css">
 	<title>ユーザ新規登録</title>
 </head>
 
 <body>
+	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
 	<h1>ユーザ新規登録</h1>
 	<p th:if="${errorMessage}" th:text="${errorMessage}"></p>
 	<form method="post" th:action="@{register}" th:object="${team2RegisterForm}">
@@ -35,7 +37,7 @@
 		<input type="submit" value="登録" />
 	</form>
 	<br>
-	<a href="/team2/login">すでにアカウントをお持ちの方はこちら</a>
+	<a href="@{/team2/login}">すでにアカウントをお持ちの方はこちら</a>
 </body>
 
 </html>

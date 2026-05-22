@@ -2,9 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.ofg">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="/team2/css/team2_header.css">
 <title>ログイン画面</title>
 </head>
 <body>
+	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
     <h1>ログイン</h1>
 	<p th:if="${errorMessage}" th:text="${errorMessage}"></p>
     <form method="post" th:action="@{login}" th:object="${team2LoginForm}">
@@ -23,6 +25,6 @@
         <input type="submit" value="ログイン" />
     </form>
     <br>
-    <a href="register">新規登録はこちら</a>
+    <a th:href="@{/team2/register}">新規登録はこちら</a>
 </body>
 </html>

@@ -1,15 +1,44 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.ofg">
+
 <head>
-<meta charset="UTF-8">
-<title>ホーム画面</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="/team2/css/team2_header.css">
+	<title>ホーム画面</title>
 </head>
+
 <body>
-	<h1>ホーム画面</h1>
-	<p>こんにちは！<span th:text="${team2LoginForm.loginId}"></span>さん！</p>
+	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
+	<h3>ようこそ！<span th:text="${team2LoginForm.loginId}"></span>さん！</h3>
+	<p th:text="学習を記録、共有して資格合格を目指しましょう！"></p>
 	<form th:action="@{/team2/logout}" method="post">
 		<button type="submit">ログアウト</button>
 	</form>
+	
+	<a th:href="@{/team2/profile}">
+		<button type="button">プロフィール</button>
+	</a>
+
+	<a th:href="@{/team2/logs}">
+		<button type="button">タイムライン</button>
+	</a>
+
+	<a th:href="@{/team2/logs/create}">
+		<button type="button">新規学習記録登録</button>
+	</a>
+
+
+	<a th:href="@{/team2/questions}">
+		<button type="button">問題一覧</button>
+	</a>
+
+	<a th:href="@{/team2/answers}">
+		<button type="button">採点結果一覧</button>
+	</a>
+
+
+
+	<!--
 	<h4>現在登録されているuser一覧</h4>
 	<table border="1">
 		<tr>
@@ -27,5 +56,8 @@
 			<td th:text="${user.createdAt}"></td>
 		</tr>
 	</table>
+	-->
+
 </body>
+
 </html>

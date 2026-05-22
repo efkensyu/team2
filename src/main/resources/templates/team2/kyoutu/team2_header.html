@@ -1,8 +1,9 @@
 <!doctype html>
-<html>
+<html xmlns:th="http://www.thymeleaf.ofg">
     <link rel="stylesheet" type="text/css" href="/team2/css/team2_header.css">
 <head>
 <meta charset="UTF-8">
+
 <title>
     Study Log
 </title>
@@ -10,14 +11,13 @@
 
 
 <body>
-   <header class="header">
+   <header th:fragment="header" class="header">
         <span class="title">Study Log</span>
 
-        <div class="right-area">
-            <span class="name">〇〇さん</span>
+		<div class="right-area" th:if="${session.team2LoginForm != null}">
+            <span class="name" th:text="${session.team2LoginForm.loginId} + 'さん'"></span>
             <img src="/team2/img/team2_user.png" alt="ユーザーアイコン" height="50px" width="50px" >
         </div>
-        
    </header>
 
    
