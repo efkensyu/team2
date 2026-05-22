@@ -1,5 +1,10 @@
 package com.example.demo.team2.form;
 
-public class Team2QuestionForm {
+import lombok.Data;
 
+@Data
+public class Team2QuestionForm {
+	private String fieldName;
+	private String studyName;
+	
 }
