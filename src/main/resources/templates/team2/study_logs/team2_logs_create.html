@@ -15,7 +15,26 @@
 		<button type="button">戻る</button>
 	</a>
 
-
+	<form method="post" th:action="@{logs/create}" th:object="${team2StudyLogForm}">
+		
+		<!-- 分野名 -->
+		<select name="studyField">
+			<option value="人間力" selected="selected">人間力</option>
+			<option value="技術力" selected="selected">技術力</option>
+			<option value="資格" selected="selected">資格</option>
+			<option value="その他" selected="selected">その他</option>
+		</select>
+		
+		<!-- 学習名 -->
+		<span th:text="学習日"></span>
+		
+		<!-- 学習名 -->
+		
+		<!-- 学習時間 -->
+		<th:block th:text="学習時間"></th:block>
+		<br>
+		<input type="submit" value="記録">
+	</form>
 </body>
 
 </html>
