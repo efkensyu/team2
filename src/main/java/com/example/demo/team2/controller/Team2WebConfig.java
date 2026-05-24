@@ -16,8 +16,6 @@ public class Team2WebConfig implements WebMvcConfigurer {
  public void addInterceptors(InterceptorRegistry registry) {
      registry.addInterceptor(loginInterceptor)
              .addPathPatterns("/team2/**")    // 対象パス
-             .excludePathPatterns("/team2/login", "/team2/register"); // ログイン画面は除外
-
-     
+             .excludePathPatterns("/team2/login", "/team2/register", "/team2/css/**"); // ログイン画面は除外
  }
 }

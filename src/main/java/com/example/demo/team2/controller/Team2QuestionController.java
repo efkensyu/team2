@@ -14,7 +14,7 @@ public class Team2QuestionController {
 	}
 	
 	//問題作成を表示
-	@PostMapping("/team2/questions")
+	@PostMapping("/team2/questions/create")
 	public String createQuestion() {
 		return "team2/questions/team2_questions_create";
 	}

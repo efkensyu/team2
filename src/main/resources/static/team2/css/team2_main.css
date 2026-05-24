@@ -1,0 +1,173 @@
+/* ==============================
+   team2_main.css
+   Study.log Navy × White
+============================== */
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	background: #ffffff;
+	color: #0b1f3a;
+	font-family: "Meiryo", "Yu Gothic", sans-serif;
+	font-size: 16px;
+}
+
+.page-wrapper {
+	padding: 64px 24px 80px;
+}
+
+/* タイトル */
+.page-title {
+	text-align: center;
+	font-size: 36px;
+	margin: 0 0 24px;
+	position: relative;
+}
+
+/* 入力欄 */
+.form-card {
+	max-width: 520px;
+	margin: 0 auto;
+}
+
+/* ラベル */
+.form-label {
+	display: block;
+	margin: 24px 0 8px;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+/* 入力欄 */
+.form-input,
+select,
+textarea {
+	width: 100%;
+	height: 56px;
+	padding: 18px;
+	border: 1px solid #cfcfcf;
+	border-radius: 8px;
+	outline: none;
+}
+
+/* 入力補助用 */
+.form-input::placeholder,
+textarea::placeholder {
+	color: #afafaf;
+}
+
+/* 入力欄をクリックした見た目 */
+.form-input:focus,
+select:focus,
+textarea:focus {
+	border-color: #0b1f3a;
+}
+
+/* 複数行の入力欄 */
+textarea {
+	height: auto;
+	min-height: 140px;
+	padding: 14px 18px;
+	resize: vertical;
+}
+
+
+/* エラー・メッセージ */
+.form-error,
+.error-message {
+	display: block;
+	margin-top: 6px;
+	margin-left: 6px;
+	color: red;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+/* ボタン */
+.btn,
+button,
+input[type="submit"] {
+	display: inline-flex;
+	align-items: center;
+	border: none;
+	cursor: pointer;
+	transition: 0.25s;
+	font-weight: bold;
+}
+
+/* メインボタン */
+.btn-primary,
+input[type="submit"] {
+	width: 100%;
+	height: 64px;
+	margin-top: 20px;
+	background: navy;
+	color: #ffffff;
+	border-radius: 8px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.btn-primary:hover,
+input[type="submit"]:hover {
+	background: #0000aa;
+}
+
+/* 通常ボタン */
+button {
+	min-width: 140px;
+	height: 44px;
+	padding: 0 20px;
+	background: #ffffff;
+	color: #1829b8;
+	border: 1px solid #1829b8;
+	border-radius: 8px;
+	font-size: 15px;
+	font-weight: 700;
+}
+
+button:hover {
+	background: #f1f4ff;
+}
+
+/* リンク */
+a {
+	color: blue;
+	font-weight: bold;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	transition: 0.5s;
+}
+
+a:hover {
+	color: navy;
+	
+}
+
+.center-link {
+	margin-top: 10px;
+	text-align: center;
+}
+
+/* カード・一覧系 */
+.content-card,
+.log-card,
+.profile-card {
+	background: #ffffff;
+	border: 1px solid #e3e8f2;
+	border-radius: 14px;
+	padding: 24px;
+	margin: 18px 0;
+	box-shadow: 0 8px 20px rgba(11, 31, 58, 0.06);
+}
+
+/* ボタンエリア */
+.button-area {
+	display: flex;
+	gap: 12px;
+	flex-wrap: wrap;
+	margin-top: 24px;
+}
