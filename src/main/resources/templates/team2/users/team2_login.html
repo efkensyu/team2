@@ -24,16 +24,15 @@
 
 				<span class="form-label" th:text="ログインID"></span>
 				<input type="text" th:field="*{loginId}" class="form-input"　/>
-				<span th:if="${#fields.hasErrors('loginId')}" th:errors="*{loginId}" class="form-error"></span>
+				<span th:if="${#fields.hasErrors('loginId')}" th:errors="*{loginId}" placeholder="ID" class="form-error"></span>
 
 				<span class="form-label" th:text="パスワード"></span>
 				<input type="password" th:field="*{password}" class="form-input" />
-				<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="form-error"></span>
+				<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" placeholder="password" class="form-error"></span>
 
-				<br><br>
 				<input type="submit" value="ログイン" class="btn btn-primary" />
 			</form>
-			<br>
+			
 			<div class="center-link">
 				<a th:href="@{/team2/register}">新規登録はこちら</a>
 			</div>

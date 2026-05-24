@@ -4,41 +4,49 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="/team2/css/team2_header.css">
-	<link rel="stylesheet" type="text/css" href="team2/css/team2_style.css">
-	<title>ユーザ新規登録</title>
+	<link rel="stylesheet" type="text/css" href="/team2/css/team2_main.css">
+	<title>study log - ユーザ登録</title>
 </head>
 
 <body>
 	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
-	<h1>ユーザ新規登録</h1>
-	<p th:if="${errorMessage}" th:text="${errorMessage}"></p>
-	<form method="post" th:action="@{register}" th:object="${team2RegisterForm}">
-		<h4 th:text="ログインID"></h4>
-		<input type="text" th:field="*{loginId}" />
-		<br>
-		<span th:if="${#fields.hasErrors('loginId')}" th:errors="*{loginId}"></span>
-		<br>
-		<h4 th:text="パスワード"></h4>
-		<input type="password" th:field="*{password}" />
-		<br>
-		<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-		<br>
-		<h4 th:text="パスワード（確認）"></h4>
-		<input type="password" th:field="*{confirmPassword}" />
-		<br>
-		<span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></span>
-		<br>
-		<span th:if="${confirmPasswordError}" th:text="${confirmPasswordError}"></span>
-		<h4 th:text="ユーザ名"></h4>
-		<input type="text" th:field="*{userName}" />
-		<br>
-		<span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
-		<br>
-		<br>
-		<input type="submit" value="登録" />
-	</form>
-	<br>
-	<a href="@{/team2/login}">すでにアカウントをお持ちの方はこちら</a>
+
+	<div class="page-wrapper">
+
+		<h1 class="page-title">ユーザ新規登録</h1>
+
+		<div class="form-card">
+
+			<p th:if="${errorMessage}" th:text="${errorMessage}"></p>
+			
+			<form method="post" th:action="@{/team2/register}" th:object="${team2RegisterForm}">
+				
+				<span class="form-label" th:text="ログインID"></span>
+				<input type="text" th:field="*{loginId}" class= "form-input" placeholder="ID" />
+				<span th:if="${#fields.hasErrors('loginId')}" th:errors="*{loginId}" class="form-error"></span>
+				
+				<span class="form-label" th:text="パスワード"></span>
+				<input type="password" th:field="*{password}" class= "form-input" placeholder="パスワードを入力" />
+				<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="form-error"></span>
+				
+				<span class="form-label" th:text="パスワード（確認）"></span>
+				<input type="password" th:field="*{confirmPassword}" class= "form-input" placeholder="パスワードを再入力" />
+				<span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="form-error"></span>
+				<span th:if="${confirmPasswordError}" th:text="${confirmPasswordError}" class="form-error"></span>
+				
+				<span class="form-label" th:text="ユーザ名"></span>
+				<input type="text" th:field="*{userName}" class= "form-input" placeholder="ユーザ名を入力" />
+				<span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="form-error"></span>
+				
+				<input type="submit" value="登録" class="btn btn-primary" />
+			</form>
+			
+			<div class="center-link">
+				<a href="@{/team2/login}">すでにアカウントをお持ちの方はこちら</a>
+			</div>
+
+		</div>
+	</div>
 </body>
 
 </html>
