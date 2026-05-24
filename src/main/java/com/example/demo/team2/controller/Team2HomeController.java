@@ -31,15 +31,6 @@ public class Team2HomeController {
 		return "team2/team2_home";
 	}
 
-	//問題一覧
-	@GetMapping("/team2/questions")
-	public String questions(HttpSession session, Model model) {
-		Team2LoginForm team2LoginForm = (Team2LoginForm) session.getAttribute("team2LoginForm");
-	    model.addAttribute("team2LoginForm", team2LoginForm);
-		System.out.println("問題一覧画面へ遷移");
-		return "team2/questions/team2_questions";
-	}
-
 	//採点結果一覧
 	@GetMapping("/team2/answers")
 	public String answers(HttpSession session, Model model) {
