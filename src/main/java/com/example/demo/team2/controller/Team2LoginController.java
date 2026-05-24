@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.demo.team2.entity.Team2User;
 import com.example.demo.team2.form.Team2LoginForm;
 import com.example.demo.team2.repository.Team2UserRepository;
+import com.example.demo.team2.service.Team2UsersService;
 
 @Controller
 public class Team2LoginController {
 	
 	@Autowired
-	private Team2UserRepository userRepository;
-	
+	private Team2UsersService usersService;
 	//ログイン画面表示
 		@GetMapping("/team2/login")
 		public String index(HttpSession session, Model model) {
@@ -52,18 +52,15 @@ public class Team2LoginController {
 				return "team2/users/team2_login";
 			}
 			
-			//認証
-			List<Team2User> users = userRepository.findByLoginIdAndPassword (team2LoginForm.getLoginId(), team2LoginForm.getPassword());
-			
-			//認証失敗
-			if (users.size() == 0) {
+			Team2User user = usersService.authenticate(team2LoginForm.getLoginId(), team2LoginForm.getPassword());
+			if (user == null) {
 				model.addAttribute("errorMessage", "IDまたはパスワードが正しくありません");
-				System.out.println("ログイン失敗（認証エラー）");
 				return "team2/users/team2_login";
 			}
 			
 			//ログイン成功
 			session.setAttribute("team2LoginForm", team2LoginForm);
+			session.setAttribute("userId", user.getUserId());
 			System.out.println("ログイン成功");
 			return "redirect:/team2/home";
 		}

@@ -1,30 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.ofg">
+
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="/team2/css/team2_header.css">
-<title>ログイン画面</title>
+	<meta charset="UTF-8">
+	
+	<link rel="stylesheet" type="text/css" href="/team2/css/team2_header.css">
+	<link rel="stylesheet" type="text/css" href="/team2/css/team2_main.css">
+	<title>study log - ログイン</title>
 </head>
+
 <body>
+
 	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
-    <h1>ログイン</h1>
-	<p th:if="${errorMessage}" th:text="${errorMessage}"></p>
-    <form method="post" th:action="@{login}" th:object="${team2LoginForm}">
-        <h4 th:text="ログインID"></h4>
-        <input type="text" th:field="*{loginId}" />
-        <br>
-        <span th:if="${#fields.hasErrors('loginId')}" th:errors="*{loginId}"></span>
-        <br>
-        <h4 th:text="パスワード"></h4>
-        <br>
-        <input type="password" th:field="*{password}" />
-        <br>
-		<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-        <br>
-        <br>
-        <input type="submit" value="ログイン" />
-    </form>
-    <br>
-    <a th:href="@{/team2/register}">新規登録はこちら</a>
+
+	<div class="page-wrapper">
+
+		<h1 class="page-title">ログイン</h1>
+
+		<div class="form-card">
+
+			<p th:if="${errorMessage}" th:text="${errorMessage}"></p>
+			<form method="post" th:action="@{/team2/login}" th:object="${team2LoginForm}">
+
+				<span class="form-label" th:text="ログインID"></span>
+				<input type="text" th:field="*{loginId}" class="form-input"　/>
+				<span th:if="${#fields.hasErrors('loginId')}" th:errors="*{loginId}" placeholder="ID" class="form-error"></span>
+
+				<span class="form-label" th:text="パスワード"></span>
+				<input type="password" th:field="*{password}" class="form-input" />
+				<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" placeholder="password" class="form-error"></span>
+
+				<input type="submit" value="ログイン" class="btn btn-primary" />
+			</form>
+			
+			<div class="center-link">
+				<a th:href="@{/team2/register}">新規登録はこちら</a>
+			</div>
+		</div>
+	</div>
 </body>
+
 </html>

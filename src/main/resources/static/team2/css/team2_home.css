@@ -1,0 +1,43 @@
+.home-wrapper {
+	max-width: 980px;
+	margin: 0 auto;
+}
+
+.home-title {
+	margin: 0 0 8px;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.home-message {
+	margin: 0 0 36px;
+	font-size: 20px;
+	color: #333333;
+}
+
+.home-menu {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 16px;
+}
+
+.home-menu-card {
+	height: 200px;
+	border: 1px solid #dadada;
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	color: #0b1f3a;
+}
+
+.home-menu-card:hover {
+	transform: translateY(-3px);
+	border-color: navy;
+}
+
+.home-menu-text {
+	font-size: 20px;
+	font-weight: bold;
+}

@@ -4,15 +4,30 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="/team2/css/team2_header.css">
+	<link rel="stylesheet" type="text/css" href="team2/css/team2_style.css">
 	<title>学習記録一覧画面</title>
 </head>
 
 <body>
 	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
-	<h1>学習記録一覧画面</h1>
+	<h1>タイムライン</h1>
 	<a th:href="@{/team2/home}">
 		<button type="button">戻る</button>
 	</a>
+	
+	<div>
+		<div th:each="log : ${logs}">
+			<span th:text="${log.user.userName}"></span>
+			<span th:text="${#temporals.format(log.studyDate, 'yyyy年MM月dd日')}"></span>
+			<span th:text="${log.field.fieldName}"></span>
+			<span th:text="${log.studyName}"></span>
+			<span th:text="${log.studyContent}"></span>
+			<span th:text="${log.studyTime / 60} + '時間' + ${log.studyTime % 60} + '分'"></span>
+			<a th:href="@{/team2/logs/{id}(id=${log.studyLogId})}">
+				<button type="button">詳細</button>
+			</a>
+		</div>
+	</div>
 
 </body>
 
