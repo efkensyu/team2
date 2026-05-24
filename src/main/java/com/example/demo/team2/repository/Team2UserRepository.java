@@ -12,4 +12,5 @@ public interface Team2UserRepository extends JpaRepository<Team2User, Integer>{
 	List<Team2User> findByLoginId(String loginId);
 	
 	 List<Team2User> findByLoginIdAndPassword(String loginId, String password);
+	 boolean existsByLoginIdAndUserIdNot(String loginId, int userId);
 }

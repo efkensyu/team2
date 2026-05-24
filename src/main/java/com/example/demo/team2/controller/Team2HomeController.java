@@ -32,33 +32,6 @@ public class Team2HomeController {
 		return "team2/team2_home";
 	}
 
-	//プロフィール
-	@GetMapping("/team2/profile")
-	public String profile(HttpSession session, Model model) {
-		Team2LoginForm team2LoginForm = (Team2LoginForm) session.getAttribute("team2LoginForm");
-	    model.addAttribute("team2LoginForm", team2LoginForm);
-		System.out.println("プロフィール画面へ遷移");
-		return "team2/users/team2_profile";
-	}
-
-	//タイムライン
-	@GetMapping("/team2/logs")
-	public String logs(HttpSession session, Model model) {
-		Team2LoginForm team2LoginForm = (Team2LoginForm) session.getAttribute("team2LoginForm");
-	    model.addAttribute("team2LoginForm", team2LoginForm);
-		System.out.println("タイムライン画面へ遷移");
-		return "team2/study_logs/team2_logs";
-	}
-
-	//学習記録登録
-	@GetMapping("/team2/logs/create")
-	public String logsCreate(HttpSession session, Model model) {
-		Team2LoginForm team2LoginForm = (Team2LoginForm) session.getAttribute("team2LoginForm");
-	    model.addAttribute("team2LoginForm", team2LoginForm);
-		System.out.println("学習記録登録画面へ遷移");
-		return "team2/study_logs/team2_logs_create";
-	}
-
 	//問題一覧
 	@GetMapping("/team2/questions")
 	public String questions(HttpSession session, Model model) {
