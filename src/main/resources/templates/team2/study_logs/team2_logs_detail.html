@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.ofg">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="/team2/css/team2_header.css">
+	<title>学習記録一覧画面</title>
+</head>
+
+<body>
+	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
+	<h1>学習記録詳細</h1>
+	<a th:href="@{/team2/home}">
+		<button type="button">戻る</button>
+	</a>
+
+	<p>投稿者：<span th:text="${log.user.userName}"></span></p>
+	<p>分野：<span th:text="${#temporals.format(log.studyDate, 'yyyy年MM月dd日')}"></span></p>
+	<p>学習日：<span th:text="${log.field.fieldName}"></span></p>
+	<p>学習名：<span th:text="${log.studyName}"></span></p>
+	<p>学習内容：<span th:text="${log.studyContent}"></span></p>
+	<p>学習時間：<span th:text="${log.studyTime / 60} + '時間' + ${log.studyTime % 60} + '分'"></span></p>
+	
+	<a th:href="@{/team2/logs/{id}/edit(id=${log.studyLogId})}">
+		<button type="button">編集</button>
+	</a>
+	
+	<form th:action="@{/team2/logs/{id}/delete(id=${log.studyLogId})}" method="post">
+		<button type="submit" onclick="return confirm('削除しますか？')">削除</button>
+	</form>
+
+</body>
+
+</html>

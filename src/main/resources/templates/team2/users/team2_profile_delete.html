@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.ofg">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="/team2/css/team2_header.css">
+	<title>退会画面</title>
+</head>
+
+<body>
+	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
+	<h1>退会</h1>
+	<a th:href="@{/team2/home}">
+		<button type="button">戻る</button>
+	</a>
+	
+	<div>
+		<p>退会するとすべてのデータが削除され、</p>
+		<p>元に戻すことはできません。</p>
+	</div>
+	
+	<form method="post" th:action="@{/team2/profile/delete}" th:object="${team2ProfileDeleteForm}">
+		<h4>パスワード</h4>
+		<input type="password" th:field="*{password}" placeholder="パスワードを入力">
+		<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+		<span th:if="${passwordError}" th:text="${passwordError}"></span>
+		<br><br>
+		<input type="submit" value="退会する" onclick="return confirm('本当に退会しますか？')" />
+	</form>
+
+</body>
+
+</html>

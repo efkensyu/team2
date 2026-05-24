@@ -9,10 +9,69 @@
 
 <body>
 	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
-	<h1>プロフィール画面</h1>
+	<h1>プロフィール</h1>
 	<a th:href="@{/team2/home}">
 		<button type="button">戻る</button>
 	</a>
+	
+	<a th:href="@{/team2/profile/edit}">
+	    <button type="button">プロフィール編集</button>
+	</a>
+
+	<a th:href="@{/team2/profile/password}">
+	    <button type="button">パスワード変更</button>
+	</a>
+	
+	<a th:href="@{/team2/profile/delete}">
+		    <button type="button">退会する</button>
+		</a>
+
+	<div>
+		<!-- 画像 -->
+		<span th:text="${user.userName}"></span>
+		<span th:text="${user.loginId}"></span>
+	</div>
+
+	<!-- 集計 -->
+	<div>
+		<p>総学習時間</p>
+		<p th:text="${totalHours} + '時間' + ${totalMinutes} + '分'"></p>
+	</div>
+
+	<div>
+		<p>今月の学習時間</p>
+		<p th:text="${monthlyHours} + '時間' + ${monthlyMinutes} + '分'"></p>
+	</div>
+
+	<div>
+		<p>今週の学習時間</p>
+		<p th:text="${weeklyHours} + '時間' + ${weeklyMinutes} + '分'"></p>
+	</div>
+
+	<div>
+		<p>今日の学習時間</p>
+		<p th:text="${dailyHours} + '時間' + ${dailyMinutes} + '分'"></p>
+	</div>
+
+	<!-- 自分の学習記録 -->
+	<div>
+		<h3>学習記憶一覧</h3>
+		<a th:href="@{/team2/logs/create}">
+			<button type="button">登録する</button>
+		</a>
+	</div>
+
+	<div th:each="log : ${myLogs}">
+		<span th:text="${log.user.userName}"></span>
+		<span th:text="${#temporals.format(log.studyDate, 'yyyy年MM月dd日')}"></span>
+		<span th:text="${log.field.fieldName}"></span>
+		<span th:text="${log.studyName}"></span>
+		<span th:text="${log.studyContent}"></span>
+		<span th:text="${log.studyTime / 60} + '時間' + ${log.studyTime % 60} + '分'"></span>
+		<a th:href="@{/team2/logs/{id}(id=${log.studyLogId})}">
+			<button type="button">詳細</button>
+		</a>
+	</div>
 
 </body>
 
