@@ -2,6 +2,7 @@ package com.example.demo.team2.entity;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,6 +13,7 @@ import lombok.Data;
 
 @Entity
 @Table(name="TEAM2_QUESTIONS_TBL")
+
 @Data
 public class Team2Questions {
 	@Id
@@ -23,10 +25,19 @@ public class Team2Questions {
 	private String studyName;
 	private String questionType;
 	private String questionText;
+	
+	@Column(name = "CHOICE_A")
 	private String choiceA;
+	
+	@Column(name = "CHOICE_B")
 	private String choiceB;
+	
+	@Column(name = "CHOICE_C")
 	private String choiceC;
+	
+	@Column(name = "CHOICE_D")
 	private String choiceD;
+	
 	private String correctAnswer;
 	private String explanation;
 	private LocalDateTime createdAt;
