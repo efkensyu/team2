@@ -14,6 +14,28 @@ body {
 	padding: 64px 24px 80px;
 }
 
+/* ページヘッダー */
+.page-header {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 32px;
+}
+
+/* 戻るリンク */
+.page-header .back-link {
+	position: absolute;
+	left: 0;
+	margin-bottom: 0;
+}
+
+/* page-header内タイトル */
+.page-header .page-title {
+	margin: 0;
+	text-align: center;
+}
+
 /* タイトル */
 .page-title {
 	text-align: center;
@@ -46,6 +68,7 @@ textarea {
 	border: 1px solid #cfcfcf;
 	border-radius: 8px;
 	outline: none;
+	padding-right: 20px;
 }
 
 /* 入力補助用 */
@@ -87,6 +110,7 @@ button,
 input[type="submit"] {
 	display: inline-flex;
 	align-items: center;
+	justify-content: center;
 	border: none;
 	cursor: pointer;
 	transition: 0.25s;
@@ -134,12 +158,12 @@ a {
 	font-weight: bold;
 	text-decoration: underline;
 	text-underline-offset: 3px;
-	transition: 0.5s;
+	transition: color 0.5s;
 }
 
 a:hover {
 	color: navy;
-	
+
 }
 
 .center-link {
@@ -165,4 +189,14 @@ a:hover {
 	gap: 12px;
 	flex-wrap: wrap;
 	margin-top: 24px;
+}
+
+.success-message {
+	margin-bottom: 20px;
+	padding: 16px 20px;
+	border: 1px solid #b7dfc8;
+	border-radius: 8px;
+	background: #f3fff7;
+	color: #1b7a3d;
+	font-weight: bold;
 }

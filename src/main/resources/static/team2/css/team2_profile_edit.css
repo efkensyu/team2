@@ -1,0 +1,23 @@
+.profile-edit-wrapper {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.form-row {
+	display: grid;
+	grid-template-columns: 150px 1fr;
+	margin-bottom: 18px;
+}
+
+.form-control-area {
+	width: 100%;
+}
+
+.form-row .form-label {
+	margin-top: 18px;
+	font-size: 18px;
+}
+
+.submit-area {
+	margin: 32px 50px 0;
+}

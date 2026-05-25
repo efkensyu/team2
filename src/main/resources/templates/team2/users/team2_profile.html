@@ -3,77 +3,89 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="/team2/css/team2_header.css">
-	<link rel="stylesheet" type="text/css" href="team2/css/team2_style.css">
-	<title>プロフィール画面</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_header.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_main.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_profile.css}">
+	<title>study log - プロフィール</title>
 </head>
 
 <body>
 	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
-	<h1>プロフィール</h1>
-	<a th:href="@{/team2/home}">
-		<button type="button">戻る</button>
-	</a>
-	
-	<a th:href="@{/team2/profile/edit}">
-	    <button type="button">プロフィール編集</button>
-	</a>
 
-	<a th:href="@{/team2/profile/password}">
-	    <button type="button">パスワード変更</button>
-	</a>
-	
-	<a th:href="@{/team2/profile/delete}">
-		    <button type="button">退会する</button>
-		</a>
+	<div class="page-wrapper profile-wrapper">
 
-	<div>
-		<!-- 画像 -->
-		<span th:text="${user.userName}"></span>
-		<span th:text="${user.loginId}"></span>
+		<div class="page-header">
+			<a class="back-link" th:href="@{/team2/home}" th:text="'← 戻る'"></a>
+			<h1 class="page-title" th:text="プロフィール"></h1>
+		</div>
+
+		<div class="profile-card-main">
+			<img src="/team2/img/team2_user.png" alt="user icon" class="profile-icon">
+
+			<div class="profile-info">
+				<div class="profile-name" th:text="${user.userName}"></div>
+				<div class="profile-login-id" th:text="${user.loginId}"></div>
+			</div>
+
+			<div class="profile-actions">
+				<a th:href="@{/team2/profile/edit}" class="profile-action-link" th:text="プロフィール編集"></a>
+				<a th:href="@{/team2/profile/password}" class="profile-action-link" th:text="パスワード変更"></a>
+				<a th:href="@{/team2/profile/delete}" class="profile-danger-link" th:text="退会する"></a>
+			</div>
+		</div>
+
+		<div class="study-summary">
+			<div class="summary-card">
+				<div class="summary-label" th:text="総学習時間"></div>
+				<div class="summary-value" th:text="${totalHours} + '時間' + ${totalMinutes} + '分'"></div>
+			</div>
+
+			<div class="summary-card">
+				<div class="summary-label" th:text="今月の学習時間"></div>
+				<div class="summary-value" th:text="${monthlyHours} + '時間' + ${monthlyMinutes} + '分'"></div>
+			</div>
+
+			<div class="summary-card">
+				<div class="summary-label" th:text="今週の学習時間"></div>
+				<div class="summary-value" th:text="${weeklyHours} + '時間' + ${weeklyMinutes} + '分'"></div>
+			</div>
+
+			<div class="summary-card">
+				<div class="summary-label" th:text="今日の学習時間"></div>
+				<div class="summary-value" th:text="${dailyHours} + '時間' + ${dailyMinutes} + '分'"></div>
+			</div>
+		</div>
+
+		<div class="profile-section-header">
+			<h2 class="section-title" th:text="学習記録一覧"></h2>
+
+			<a th:href="@{/team2/logs/create}" class="new-log-link">
+				<span th:text="登録する"></span>
+			</a>
+		</div>
+
+		<div class="profile-log-list">
+			<div class="profile-log-card" th:each="log : ${myLogs}">
+				<div class="profile-log-header">
+					<span class="profile-log-date" th:text="${#temporals.format(log.studyDate, 'yyyy年MM月dd日')}"></span>
+					<span class="profile-log-field" th:text="${log.field.fieldName}"></span>
+				</div>
+
+				<div class="profile-log-title" th:text="${log.studyName}"></div>
+				<div class="profile-log-content" th:text="${log.studyContent}"></div>
+
+				<div class="profile-log-footer">
+					<span class="profile-log-time"
+						th:text="${log.studyTime / 60} + '時間' + ${log.studyTime % 60} + '分'"></span>
+
+					<a th:href="@{/team2/logs/{id}(id=${log.studyLogId})}">
+						<button type="button" class="detail-button" th:text="詳細"></button>
+					</a>
+				</div>
+			</div>
+		</div>
+
 	</div>
-
-	<!-- 集計 -->
-	<div>
-		<p>総学習時間</p>
-		<p th:text="${totalHours} + '時間' + ${totalMinutes} + '分'"></p>
-	</div>
-
-	<div>
-		<p>今月の学習時間</p>
-		<p th:text="${monthlyHours} + '時間' + ${monthlyMinutes} + '分'"></p>
-	</div>
-
-	<div>
-		<p>今週の学習時間</p>
-		<p th:text="${weeklyHours} + '時間' + ${weeklyMinutes} + '分'"></p>
-	</div>
-
-	<div>
-		<p>今日の学習時間</p>
-		<p th:text="${dailyHours} + '時間' + ${dailyMinutes} + '分'"></p>
-	</div>
-
-	<!-- 自分の学習記録 -->
-	<div>
-		<h3>学習記憶一覧</h3>
-		<a th:href="@{/team2/logs/create}">
-			<button type="button">登録する</button>
-		</a>
-	</div>
-
-	<div th:each="log : ${myLogs}">
-		<span th:text="${log.user.userName}"></span>
-		<span th:text="${#temporals.format(log.studyDate, 'yyyy年MM月dd日')}"></span>
-		<span th:text="${log.field.fieldName}"></span>
-		<span th:text="${log.studyName}"></span>
-		<span th:text="${log.studyContent}"></span>
-		<span th:text="${log.studyTime / 60} + '時間' + ${log.studyTime % 60} + '分'"></span>
-		<a th:href="@{/team2/logs/{id}(id=${log.studyLogId})}">
-			<button type="button">詳細</button>
-		</a>
-	</div>
-
 </body>
 
 </html>

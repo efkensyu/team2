@@ -3,52 +3,91 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="/team2/css/team2_header.css">
-	<link rel="stylesheet" type="text/css" href="team2/css/team2_style.css">
-	<title>新規学習記録登録</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_header.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_main.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_logs_create.css}">
+	<title>study log - 学習記録編集</title>
 </head>
-
 
 <body>
 	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
-	<h1>学習記録演習</h1>
-	<a th:href="@{/team2/home}">
-		<button type="button">戻る</button>
-	</a>
 
-	<form method="post" th:action="@{/team2/logs/{id}/edit(id=${team2StudyLogsForm.studyLogId})}" th:object="${team2StudyLogsForm}" >
-		
-		<!-- 分野 -->
-		<h4>分野</h4>
-		<select th:field="*{fieldId}">
-			<option value="0">選択してください</option>
-			<option value="1">人間力</option>
-			<option value="2">技術力</option>
-			<option value="3">資格</option>
-			<option value="4">その他</option>
-		</select>
-		<span th:if="${#fields.hasErrors('fieldId')}" th:errors="*{fieldId}"></span>
-		
-		<!-- 学習名 -->
-		<h4>学習名</h4>
-		<input type="text" th:field="*{studyName}" />
-		<span th:if="${#fields.hasErrors('studyName')}" th:errors="*{studyName}"></span>
-		
-		<!-- 学習日 -->
-		<h4>学習日</h4>
-		<input type="date" th:field="*{studyDate}" />
-		<span th:if="${#fields.hasErrors('studyDate')}" th:errors="*{studyDate}"></span>
-		
-		<!-- 学習時間 -->
-		<h4>学習時間</h4>
-		<input type="number" th:field="*{studyHour}" min="0" />時間
-		<input type="number" th:field="*{studyMinute}" min="0" max="59" />分
-		<span th:if="${#fields.hasErrors('studyHour')}" th:errors="*{studyHour}"></span>
-		<span th:if="${#fields.hasErrors('studyMinute')}" th:errors="*{studyMinute}"></span>
-		
-		<br><br>
-		<input type="submit" value="更新">
-	</form>
+	<div class="page-wrapper logs-create-wrapper">
+
+		<div class="page-header">
+			<a class="back-link" th:href="@{/team2/logs/{id}(id=${team2StudyLogsForm.studyLogId})}" th:text="'← 戻る'">
+			</a>
+
+			<h1 class="page-title" th:text="学習記録編集"></h1>
+		</div>
+
+		<form class="logs-create-form" method="post"
+			th:action="@{/team2/logs/{id}/edit(id=${team2StudyLogsForm.studyLogId})}" th:object="${team2StudyLogsForm}">
+
+			<input type="hidden" th:field="*{studyLogId}">
+
+			<div class="form-row">
+				<span class="form-label" th:text="分野名"></span>
+				<div class="form-control-area">
+					<select th:field="*{fieldId}">
+						<option value="0" th:text="選択してください"></option>
+						<option value="1" th:text="人間力"></option>
+						<option value="2" th:text="技術力"></option>
+						<option value="3" th:text="資格"></option>
+						<option value="4" th:text="その他"></option>
+					</select>
+					<span th:if="${#fields.hasErrors('fieldId')}" th:errors="*{fieldId}" class="form-error"></span>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<span class="form-label" th:text="学習名"></span>
+				<div class="form-control-area">
+					<input type="text" th:field="*{studyName}" class="form-input" />
+					<span th:if="${#fields.hasErrors('studyName')}" th:errors="*{studyName}" class="form-error"></span>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<span class="form-label" th:text="学習日"></span>
+				<div class="form-control-area">
+					<input type="date" th:field="*{studyDate}" class="form-input" />
+					<span th:if="${#fields.hasErrors('studyDate')}" th:errors="*{studyDate}" class="form-error"></span>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<span class="form-label" th:text="学習時間"></span>
+				<div class="form-control-area time-area">
+					<input type="number" th:field="*{studyHour}" min="0" class="time-input" />
+					<span th:text="時間"></span>
+
+					<input type="number" th:field="*{studyMinute}" min="0" max="59" class="time-input" />
+					<span th:text="分"></span>
+
+					<span th:if="${#fields.hasErrors('studyHour')}" th:errors="*{studyHour}" class="form-error"></span>
+					<span th:if="${#fields.hasErrors('studyMinute')}" th:errors="*{studyMinute}"
+						class="form-error"></span>
+					<span th:if="${studyTimeError}" th:text="${studyTimeError}" class="form-error"></span>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<span class="form-label" th:text="学習内容"></span>
+				<div class="form-control-area">
+					<textarea th:field="*{studyContent}" placeholder="学習した内容を入力してください"></textarea>
+					<span th:if="${#fields.hasErrors('studyContent')}" th:errors="*{studyContent}"
+						class="form-error"></span>
+				</div>
+			</div>
+
+			<div class="submit-area">
+				<input type="submit" value="更新" class="btn btn-primary">
+			</div>
+
+		</form>
+
+	</div>
 </body>
 
 </html>
