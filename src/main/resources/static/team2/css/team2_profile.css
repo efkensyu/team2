@@ -1,0 +1,196 @@
+.profile-wrapper {
+	max-width: 980px;
+	margin: 0 auto;
+}
+
+.profile-card-main {
+	border: 1px solid #dadada;
+	border-radius: 8px;
+	padding: 28px;
+	display: flex;
+	align-items: center;
+	gap: 24px;
+	margin-bottom: 24px;
+}
+
+.profile-icon {
+	width: 72px;
+	height: 72px;
+	border-radius: 50%;
+	border: 1px solid #dadada;
+	object-fit: cover;
+}
+
+.profile-info {
+	flex: 1;
+}
+
+.profile-name {
+	font-size: 28px;
+	font-weight: bold;
+	color: #0b1f3a;
+}
+
+.profile-login-id {
+	margin-top: 4px;
+	font-size: 16px;
+	color: #666666;
+}
+
+.profile-actions {
+	display: flex;
+	gap: 12px;
+}
+
+.profile-action-link,
+.profile-danger-link,
+.new-log-link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 130px;
+	height: 40px;
+	border: 1px solid navy;
+	border-radius: 8px;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.profile-action-link,
+.new-log-link {
+	color: navy;
+}
+
+.profile-danger-link {
+	color: red;
+	border-color: red;
+}
+
+.profile-action-link:hover,
+.new-log-link:hover {
+	background: #f1f4ff;
+	text-decoration: none;
+}
+
+.profile-danger-link:hover {
+	background: #fff1f1;
+	text-decoration: none;
+}
+
+.study-summary {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 16px;
+	margin-bottom: 36px;
+}
+
+.summary-card {
+	border: 1px solid #dadada;
+	border-radius: 8px;
+	padding: 20px;
+	background: #ffffff;
+}
+
+.summary-label {
+	margin-bottom: 8px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #666666;
+}
+
+.summary-value {
+	font-size: 22px;
+	font-weight: bold;
+	color: #0b1f3a;
+}
+
+.profile-section-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 16px;
+}
+
+.section-title {
+	margin: 0;
+	font-size: 24px;
+	color: #0b1f3a;
+}
+
+.profile-log-list {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.profile-log-card {
+	border: 1px solid #dadada;
+	border-radius: 8px;
+	padding: 20px 24px;
+}
+
+.profile-log-card:hover {
+	border-color: navy;
+}
+
+.profile-log-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.profile-log-date {
+	font-size: 14px;
+	color: #666666;
+}
+
+.profile-log-field {
+	padding: 4px 12px;
+	border: 1px solid #dadada;
+	border-radius: 999px;
+	font-size: 13px;
+	font-weight: bold;
+	color: navy;
+}
+
+.profile-log-title {
+	margin-bottom: 8px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #0b1f3a;
+}
+
+.profile-log-content {
+	margin-bottom: 14px;
+	color: #333333;
+	line-height: 1.7;
+	white-space: pre-wrap;
+}
+
+.profile-log-footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.profile-log-time {
+	font-weight: bold;
+	color: #333333;
+}
+
+.detail-button {
+	min-width: 100px;
+	height: 38px;
+	background: #ffffff;
+	color: navy;
+	border: 1px solid navy;
+	border-radius: 8px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: 0.25s;
+}
+
+.detail-button:hover {
+	background: #f1f4ff;
+}

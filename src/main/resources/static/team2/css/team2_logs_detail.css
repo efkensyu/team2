@@ -1,0 +1,111 @@
+.logs-detail-wrapper {
+	max-width: 850px;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+
+.detail-card {
+	border: 1px solid #cfcfcf;
+	border-radius: 8px;
+	padding: 28px 32px;
+	background: #ffffff;
+}
+
+.detail-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 18px;
+}
+
+.detail-user-area {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.user-icon {
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 1px solid #dadada;
+}
+
+.detail-user {
+	font-size: 24px;
+	font-weight: bold;
+	color: #0b1f3a;
+}
+
+.detail-date {
+	font-size: 14px;
+	color: #666666;
+}
+
+.detail-field {
+	display: inline-block;
+	margin-bottom: 24px;
+	padding: 4px 12px;
+	border: 1px solid #dadada;
+	border-radius: 999px;
+	font-size: 14px;
+	font-weight: bold;
+	color: navy;
+}
+
+.detail-section {
+	margin-bottom: 22px;
+}
+
+.detail-label {
+	margin-bottom: 6px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #666666;
+}
+
+.detail-value {
+	font-size: 18px;
+	color: #0b1f3a;
+}
+
+.detail-title {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.detail-content {
+	line-height: 1.8;
+	white-space: pre-wrap;
+}
+
+.detail-actions {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 12px;
+	margin-top: 30px;
+}
+
+.detail-edit-link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 100px;
+	height: 44px;
+	border: 1px solid navy;
+	border-radius: 8px;
+	color: navy;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.detail-edit-link:hover {
+	background: #f1f4ff;
+	text-decoration: none;
+}
+
+.detail-delete-button {
+	min-width: 100px;
+}

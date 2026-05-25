@@ -1,0 +1,100 @@
+.logs-wrapper {
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+
+.logs-list {
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+}
+
+.log-card {
+	border: 1px solid #cfcfcf;
+	border-radius: 8px;
+	padding: 22px 26px;
+	background: #ffffff;
+}
+
+.log-card:hover {
+	border-color: navy;
+}
+
+.log-card-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 15px;
+}
+
+.log-user {
+	font-size: 24px;
+	font-weight: bold;
+	color: #0b1f3a;
+}
+
+.log-user-area {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.user-icon {
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 1px solid #dadada;
+}
+
+.log-date {
+	font-size: 14px;
+	color: #666666;
+}
+
+.log-field {
+	display: inline-block;
+	margin-bottom: 12px;
+	padding: 4px 12px;
+	border: 1px solid #dadada;
+	border-radius: 999px;
+	font-size: 14px;
+	font-weight: bold;
+	color: navy;
+}
+
+.log-title {
+	margin-bottom: 10px;
+	font-size: 22px;
+	font-weight: bold;
+	color: #0b1f3a;
+}
+
+.log-time {
+	margin-bottom: 16px;
+	font-size: 16px;
+	color: #333333;
+}
+
+.log-action {
+	text-align: right;
+}
+
+.detail-link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 100px;
+	height: 38px;
+	border: 1px solid navy;
+	border-radius: 8px;
+	color: navy;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.detail-link:hover {
+	background: #f1f4ff;
+	text-decoration: none;
+}
