@@ -16,7 +16,7 @@
 	</a>
 	
 	<p th:if="${errorMessage}" th:text="${errorMessage}"></p>
-	<form method="post" th:action="@{/team2/questions/create}" th:object="${question}">
+	<form method="post" th:action="@{/team2/questions/create}" th:object="${team2QuestionForm}">
 		<table class="questionForm">
 		
 		<!--分野-->

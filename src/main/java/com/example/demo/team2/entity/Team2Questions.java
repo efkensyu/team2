@@ -7,7 +7,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.Data;
 
@@ -20,10 +25,26 @@ public class Team2Questions {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int questionId;
 	
+	@Column(name = "USER_ID")
 	private int userId;
+	
+	@ManyToOne
+	@JoinColumn(name = "USER_ID", insertable = false, updatable = false)
+	private Team2User user;
+	
+	
+	@Column(name = "FIELD_ID")
 	private int fieldId;
+	
+	@ManyToOne
+	@JoinColumn(name = "FIELD_ID", insertable = false, updatable = false)
+	private Team2Fields field;
+	
+	
 	private String studyName;
 	private String questionType;
+	
+	@Column(name = "QUESTION_TEXT")
 	private String questionText;
 	
 	@Column(name = "CHOICE_A")
@@ -40,7 +61,13 @@ public class Team2Questions {
 	
 	private String correctAnswer;
 	private String explanation;
+	
+	@CreationTimestamp
+	@Column(name = "CREATED_AT")
 	private LocalDateTime createdAt;
+	
+	@UpdateTimestamp
+	@Column(name = "UPDATED_AT")
 	private LocalDateTime updatedAt;
 }
 

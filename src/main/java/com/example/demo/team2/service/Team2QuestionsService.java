@@ -21,8 +21,23 @@ public class Team2QuestionsService {
 	}
 	
 	public void save(Team2Questions question) {
+		if (question.getQuestionId() != 0) {
+			Team2Questions existing = questionsRepository.findById(question.getQuestionId())
+					.orElseThrow(() -> new RuntimeException("問題が見つかりません"));
+			 question.setCreatedAt(existing.getCreatedAt());
+		}
 		questionsRepository.save(question);
 	}
+	
+	public Team2Questions findByQuestionId(int questionId){
+		return questionsRepository.findById(questionId)
+				.orElseThrow(() -> new RuntimeException("問題が見つかりません"));
+	}
+	
+	public void delete(int questionId) {
+		questionsRepository.deleteById(questionId);
+	}
+	
 	
 	
 	
