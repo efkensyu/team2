@@ -13,64 +13,38 @@
 
 <body>
 
-	<header th:replace="~{team2/kyoutu/team2_header :: header}">
-	</header>
+	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
 
 	<div class="page-wrapper profile-edit-wrapper">
 
 		<div class="page-header">
 			<a class="back-link" th:href="@{/team2/profile}" th:text="'← 戻る'"></a>
-
-			<h1 class="page-title" th:text="プロフィール編集">
-			</h1>
+			<h1 class="page-title" th:text="プロフィール編集"></h1>
 		</div>
 
 		<div class="form-card">
 
-			<div class="success-message" th:if="${successMessage}" th:text="${successMessage}">
-			</div>
+			<div class="success-message" th:if="${successMessage}" th:text="${successMessage}"></div>
 
 			<form method="post" th:action="@{/team2/profile/edit}" th:object="${team2ProfileEditForm}">
 
 				<input type="hidden" th:field="*{userId}">
 
-				<div class="form-row">
-					<span class="form-label" th:text="ユーザ名">
-					</span>
+				<span class="form-label" th:text="ユーザ名"></span>
+				<input type="text" th:field="*{userName}" class="form-input" placeholder="ユーザ名を入力してください">
+				<span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="form-error"></span>
 
-					<div class="form-control-area">
-						<input type="text" th:field="*{userName}" class="form-input" placeholder="ユーザ名を入力してください">
+				<span class="form-label" th:text="ログインID"></span>
+				<input type="text" th:field="*{loginId}" class="form-input" placeholder="ログインIDを入力してください">
+				<span th:if="${#fields.hasErrors('loginId')}" th:errors="*{loginId}" class="form-error"></span>
+				<span th:if="${loginIdError}" th:text="${loginIdError}" class="form-error"></span>
 
-						<span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="form-error">
-						</span>
-					</div>
-				</div>
-
-				<div class="form-row">
-					<span class="form-label" th:text="ログインID">
-					</span>
-
-					<div class="form-control-area">
-						<input type="text" th:field="*{loginId}" class="form-input" placeholder="ログインIDを入力してください">
-
-						<span th:if="${#fields.hasErrors('loginId')}" th:errors="*{loginId}" class="form-error">
-						</span>
-
-						<span th:if="${loginIdError}" th:text="${loginIdError}" class="form-error">
-						</span>
-					</div>
-				</div>
-
-				<div class="submit-area">
-					<input type="submit" value="更新" class="btn btn-primary">
-				</div>
-
+				<input type="submit" value="更新" class="btn btn-primary">
 			</form>
 
 		</div>
 
 	</div>
-
 </body>
 
 </html>

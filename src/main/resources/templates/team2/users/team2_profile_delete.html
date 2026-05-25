@@ -4,30 +4,55 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_header.css}">
-		<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_main.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_main.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_profile_delete.css}">
 	<title>退会画面</title>
 </head>
 
 <body>
 	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
-	<h1>退会</h1>
-	<a th:href="@{/team2/profile}">
-		<button type="button">戻る</button>
-	</a>
-	
-	<div>
-		<p>退会するとすべてのデータが削除され、</p>
-		<p>元に戻すことはできません。</p>
+
+	<div class="profile-delete-wrapper">
+
+		<a class="back-link" th:href="@{/team2/profile}">
+			← 戻る
+		</a>
+
+		<h1 class="page-title">退会</h1>
+
+		<div class="warning-box">
+			<p class="warning-title">
+				⚠ 注意
+			</p>
+
+			<p class="warning-text">
+				退会するとすべてのデータが削除され、<br>
+				元に戻すことはできません。
+			</p>
+		</div>
+
+		<form class="delete-form" method="post" th:action="@{/team2/profile/delete}"
+			th:object="${team2ProfileDeleteForm}">
+
+			<div class="form-group">
+
+				<label class="form-label">
+					パスワード
+				</label>
+
+				<input class="form-input" type="password" th:field="*{password}" placeholder="パスワードを入力">
+
+				<span class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+
+				<span class="error-message" th:if="${passwordError}" th:text="${passwordError}"></span>
+
+			</div>
+
+			<input class="delete-button" type="submit" value="退会する" onclick="return confirm('本当に退会しますか？')" />
+
+		</form>
+
 	</div>
-	
-	<form method="post" th:action="@{/team2/profile/delete}" th:object="${team2ProfileDeleteForm}">
-		<h4>パスワード</h4>
-		<input type="password" th:field="*{password}" placeholder="パスワードを入力">
-		<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-		<span th:if="${passwordError}" th:text="${passwordError}"></span>
-		<br><br>
-		<input type="submit" value="退会する" onclick="return confirm('本当に退会しますか？')" />
-	</form>
 
 </body>
 
