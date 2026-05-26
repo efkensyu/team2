@@ -1,12 +1,13 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.ofg">
-    <link rel="stylesheet" type="text/css" href="@{/team2/css/team2_header.css}">
-<head>
-<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="@{/team2/css/team2_header.css}">
 
-<title>
-    Study Log
-</title>
+<head>
+	<meta charset="UTF-8">
+
+	<title>
+		Study Log
+	</title>
 </head>
 
 
@@ -24,9 +25,7 @@
 			</a>
 
 			<form th:action="@{/team2/logout}" method="post" class="header-logout-form">
-				<button type="submit"
-					class="header-logout-button"
-					onclick="return confirm('ログアウトしますか？')">
+				<button type="submit" class="header-logout-button" onclick="return confirm('ログアウトしますか？')">
 					ログアウト
 				</button>
 			</form>
@@ -34,6 +33,7 @@
 		</div>
 	</header>
 
-   
+
 </body>
+
 </html>
