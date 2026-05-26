@@ -79,7 +79,7 @@
 			</table>
 		</div>
 		
-		<div class="button-area">
+		<div class="button-area" th:if="${session.userId == team2Questions.userId}">
 			<a th:href="@{/team2/questions/{id}/edit(id=${team2Questions.questionId})}">
 				<button type="button">編集</button>
 			</a>
