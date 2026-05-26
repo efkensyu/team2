@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_header.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_main.css}">
+<title>回答画面</title>
+</head>
+<body>
+	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
+	<h1>回答画面</h1>
+	<a th:href="@{/team2/questions}">
+		<button type="button">戻る</button>
+	</a>
+	
+	<h4>回答する</h4>
+	
+	<p>分野：<span th:text="${question.field.fieldName}"></span></p>
+	<p>学習名：<span th:text="${question.studyName}"></span></p>
+	<p>問題形式：<span th:text="${question.questionType}"></span></p>
+	<p>問題文：<span th:text="${question.questionText}"></span></p>
+	
+	<form method="post" th:action="@{/team2/questions/{questionId}/answer(questionId=${question.questionId})}">
+		
+		<!--選択式の場合-->
+		<div th:if="${question.questionType == '選択式'}">
+			<label><input type="radio" name="userAnswer" th:value="${question.choiceA}"/><span th:text="${question.choiceA}"></span></label>
+			<br>
+			<label><input type="radio" name="userAnswer" th:value="${question.choiceB}"/><span th:text="${question.choiceB}"></span></label>
+			<br>
+			<label><input type="radio" name="userAnswer" th:value="${question.choiceC}"/><span th:text="${question.choiceC}"></span></label>
+			<br>
+			<label><input type="radio" name="userAnswer" th:value="${question.choiceD}"/><span th:text="${question.choiceD}"></span></label>
+			<br>	
+		</div>
+		
+		<!--記述式の場合-->
+		<div th:if="${question.questionType == '記述式'}">
+			<input type="text" name="userAnswer" placeholder="回答を入力してください"/>
+		</div>
+		
+		<br>
+		<button type="submit">回答する</button>
+		
+	</form>
+</body>
+</html>

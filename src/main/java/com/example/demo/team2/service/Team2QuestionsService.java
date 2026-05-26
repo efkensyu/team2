@@ -38,7 +38,4 @@ public class Team2QuestionsService {
 		questionsRepository.deleteById(questionId);
 	}
 	
-	
-	
-	
 }

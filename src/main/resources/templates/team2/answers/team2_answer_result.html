@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_header.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_main.css}">
+<title>採点画面</title>
+</head>
+<body>
+	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
+	<h1>採点結果</h1>
+	
+	<p>問題文：<span th:text="${question.questionText}"></span></p>
+	<p>あなたの回答：<span th:text="${userAnswer}"></span></p>
+	<p>正解：<span th:text="${question.correctAnswer}"></span></p>
+	<p>解説：<span th:text="${question.explanation}"></span></p>
+	
+	<p th:if="${isCorrect}">正解です！</p>
+	<p th:if="${!isCorrect}">不正解です...</p>
+	
+	
+	<a th:href="@{/team2/questions}">
+		<button type="button">一覧に戻る</button>
+	</a>
+		
+	<a th:href="@{/team2/questions/{questionId}/answer(questionId=${question.questionId})}">
+		<button type="button">もう一度回答する</button>
+	</a>	
+	
+	
+</body>
+</html>
