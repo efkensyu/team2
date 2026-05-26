@@ -61,6 +61,7 @@ public class Team2LoginController {
 			//ログイン成功
 			session.setAttribute("team2LoginForm", team2LoginForm);
 			session.setAttribute("userId", user.getUserId());
+			session.setAttribute("userName", user.getUserName());
 			System.out.println("ログイン成功");
 			return "redirect:/team2/home";
 		}

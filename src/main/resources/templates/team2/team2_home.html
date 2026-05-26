@@ -14,7 +14,7 @@
 
 	<div class="page-wrapper home-wrapper">
 
-		<h1 class="home-title" th:text="'ようこそ！' + ${team2LoginForm.loginId} + 'さん'"></h1>
+		<h1 class="home-title" th:text="'ようこそ！ ' + ${session.userName} + ' さん'"></h1>
 		<p class="home-message" th:text="学習を記録、共有して資格合格を目指しましょう！"></p>
 
 		<div class="home-menu">

@@ -65,6 +65,7 @@ public class Team2RegisterController {
 		Team2LoginForm loginForm = usersService.login(team2RegisterForm);
 		session.setAttribute("team2LoginForm", loginForm);
 		session.setAttribute("userId", user.getUserId());
+		session.setAttribute("userName", user.getUserName());
 		System.out.println("新規登録成功");
 		return "redirect:/team2/home";
 		}
