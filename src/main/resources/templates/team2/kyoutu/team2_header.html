@@ -11,14 +11,28 @@
 
 
 <body>
-   <header th:fragment="header" class="header">
-        <span class="title">Study Log</span>
+	<header th:fragment="header" class="header">
+		<a th:href="@{/team2/home}" class="title-link">
+			<span class="title">Study Log</span>
+		</a>
 
-		<div class="right-area" th:if="${session.userName != null}">
-            <span class="name" th:text="${session.userName} + ' さん'"></span>
-            <img src="/team2/img/team2_user.png" alt="ユーザーアイコン" height="50px" width="50px" >
-        </div>
-   </header>
+		<div class="right-area" th:if="${session.team2LoginForm != null}">
+
+			<a th:href="@{/team2/profile}" class="profile-link">
+				<span class="name" th:text="${session.userName} + 'さん'"></span>
+				<img th:src="@{/team2/img/team2_user.png}" alt="ユーザーアイコン" height="50px" width="50px">
+			</a>
+
+			<form th:action="@{/team2/logout}" method="post" class="header-logout-form">
+				<button type="submit"
+					class="header-logout-button"
+					onclick="return confirm('ログアウトしますか？')">
+					ログアウト
+				</button>
+			</form>
+
+		</div>
+	</header>
 
    
 </body>

@@ -2,6 +2,7 @@ package com.example.demo.team2.form;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -32,6 +33,7 @@ public class Team2StudyLogsForm {
 	@Size(max = 300, message = "学習内容は300字で記述してください")
 	private String studyContent;
 	
+	@Max(value = 23, message = "学習時間は23時間59分以内で入力してください")
 	private int studyHour;
 	private int studyMinute;
 }

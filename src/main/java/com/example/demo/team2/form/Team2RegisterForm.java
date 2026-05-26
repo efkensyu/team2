@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class Team2RegisterForm {
 	@NotBlank(message = "ログインIDを入力してください")
-	@Size(max = 50, message = "ログインIDは50文字以内で入力してください")
+	@Size(max = 20, message = "ログインIDは20文字以内で入力してください")
 	@Pattern(regexp = "^[a-zA-Z0-9._-]+$", message = "ログインIDは半角英数字・._-で入力してください")
 	private String loginId;
 

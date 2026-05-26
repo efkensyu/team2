@@ -66,9 +66,19 @@
 			<div class="form-row">
 				<span class="form-label">学習時間<span class="required">必須</span></span>
 				<div class="form-control-area">
-					<input type="number" th:field="*{studyHour}" min="0" class="time-input" />
+					<select th:field="*{studyHour}" class="time-input">
+
+						<option th:each="i : ${#numbers.sequence(0,23)}" th:value="${i}" th:text="${i}">
+						</option>
+
+					</select>
 					<span th:text="時間"></span>
-					<input type="number" th:field="*{studyMinute}" min="0" max="59" class="time-input" />
+					<select th:field="*{studyMinute}" class="time-input">
+
+						<option th:each="i : ${#numbers.sequence(0,59)}" th:value="${i}" th:text="${i}">
+						</option>
+
+					</select>
 					<span th:text="分"></span>
 					<span class="input-note">1分以上で入力してください</span>
 					<span th:if="${#fields.hasErrors('studyHour')}" th:errors="*{studyHour}" class="form-error"></span>

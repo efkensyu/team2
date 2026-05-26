@@ -118,11 +118,18 @@ public class Team2StudyController {
 	//編集
 	@PostMapping("/team2/logs/{id}/edit")
 	public String update(@PathVariable int id, @ModelAttribute @Validated Team2StudyLogsForm team2StudyLogsForm,
-			BindingResult result, RedirectAttributes redirectAttributes) {
+			BindingResult result, RedirectAttributes redirectAttributes, Model model) {
 
 		//バリデーション
 		if (result.hasErrors()) {
 			System.out.println("編集失敗（バリデーション）");
+			return "team2/study_logs/team2_logs_edit";
+		}
+		
+		// 0分は登録できない
+		if (team2StudyLogsForm.getStudyHour() == 0 && team2StudyLogsForm.getStudyMinute() == 0) {
+			System.out.println("バリデーションエラー（学習時間）");
+			model.addAttribute("studyTimeError", "学習時間を入力してください");
 			return "team2/study_logs/team2_logs_edit";
 		}
 
