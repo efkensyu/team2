@@ -90,6 +90,8 @@ public class Team2QuestionController {
 	@GetMapping("/team2/questions/{questionId}/edit")
 	public String editQuestion(@PathVariable int questionId, Model model) {
 		Team2Questions question = questionsService.findByQuestionId(questionId);
+		
+		
 		model.addAttribute("team2QuestionForm", question);
 		System.out.println("問題編集画面へ遷移");
 		return "team2/questions/team2_questions_edit";
