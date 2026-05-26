@@ -1,38 +1,116 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<meta charset="UTF-8">
+
 	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_header.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_main.css}">
-	<title>採点詳細画面</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_answers_detail.css}">
+
+	<title>study log - 採点詳細</title>
 </head>
+
 <body>
 	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
-	<h1 class="page-title" th:text="採点詳細画面"></h1>
-	<a th:href="@{/team2/answers}">
-		<button type="button">戻る</button>
-	</a>
 
-	
-	<p>回答日：<span th:text="${#temporals.format(answer.createdAt, 'yyyy年MM月dd日')}"></span></p>
-	<p>分野：<span th:text="${answer.question.field.fieldName}"></span></p>
-	<p>学習名：<span th:text="${answer.question.studyName}"></span></p>
-	<p>問題形式：<span th:text="${answer.question.questionType}"></span></p>
-	<p>問題文：<span th:text="${answer.question.questionText}"></span></p>
-	<p>選択肢A：<span th:text="${answer.question.choiceA}"></span></p>
-	<p>選択肢B：<span th:text="${answer.question.choiceB}"></span></p>
-	<p>選択肢C：<span th:text="${answer.question.choiceC}"></span></p>
-	<p>選択肢D：<span th:text="${answer.question.choiceD}"></span></p>
-	<p>正解：<span th:text="${answer.question.correctAnswer}"></span></p>
-	<p>解説：<span th:text="${answer.question.explanation}"></span></p>
-	<p>あなたの回答：<span th:text="${answer.userAnswer}"></span></p>
-	
-	<span th:if="${answer.isCorrect == 1}">結果：正解</span>
-	<span th:if="${answer.isCorrect == 0}">結果：不正解</span>
-	
-	<a th:href="@{/team2/questions/{id}/answer(id=${answer.question.questionId})}">
-		<button type="button">もう一度回答する</button>
-	</a>
-	
+	<div class="page-wrapper answers-detail-wrapper">
+
+		<div class="page-header">
+			<a class="back-link" th:href="@{/team2/answers}">
+				← 戻る
+			</a>
+
+			<h1 class="page-title">採点詳細</h1>
+		</div>
+
+		<div class="answer-detail-list">
+
+			<div class="result-message correct" th:if="${answer.isCorrect == 1}">
+				結果：正解
+			</div>
+
+			<div class="result-message incorrect" th:if="${answer.isCorrect == 0}">
+				結果：不正解
+			</div>
+
+			<div class="answer-detail-row">
+				<span class="answer-detail-label">回答日</span>
+				<p class="answer-detail-text" th:text="${#temporals.format(answer.createdAt, 'yyyy年MM月dd日')}">
+				</p>
+			</div>
+
+			<div class="answer-detail-row">
+				<span class="answer-detail-label">分野</span>
+				<p class="answer-detail-text" th:text="${answer.question.field.fieldName}"></p>
+			</div>
+
+			<div class="answer-detail-row">
+				<span class="answer-detail-label">学習名</span>
+				<p class="answer-detail-text" th:text="${answer.question.studyName}"></p>
+			</div>
+
+			<div class="answer-detail-row">
+				<span class="answer-detail-label">問題形式</span>
+				<p class="answer-detail-text" th:text="${answer.question.questionType}"></p>
+			</div>
+
+			<div class="content-card answer-detail-item">
+				<span class="answer-detail-label">問題文</span>
+				<p class="answer-detail-text answer-question-text" th:text="${answer.question.questionText}">
+				</p>
+			</div>
+
+			<div class="choice-detail-area" th:if="${answer.question.questionType == '選択式'}">
+
+				<div class="answer-detail-row">
+					<span class="answer-detail-label">選択肢A</span>
+					<p class="answer-detail-text" th:text="${answer.question.choiceA}"></p>
+				</div>
+
+				<div class="answer-detail-row">
+					<span class="answer-detail-label">選択肢B</span>
+					<p class="answer-detail-text" th:text="${answer.question.choiceB}"></p>
+				</div>
+
+				<div class="answer-detail-row">
+					<span class="answer-detail-label">選択肢C</span>
+					<p class="answer-detail-text" th:text="${answer.question.choiceC}"></p>
+				</div>
+
+				<div class="answer-detail-row">
+					<span class="answer-detail-label">選択肢D</span>
+					<p class="answer-detail-text" th:text="${answer.question.choiceD}"></p>
+				</div>
+
+			</div>
+
+			<div class="content-card answer-detail-item">
+				<span class="answer-detail-label">あなたの回答</span>
+				<p class="answer-detail-text" th:text="${answer.userAnswer}"></p>
+			</div>
+
+			<div class="answer-detail-row">
+				<span class="answer-detail-label">正解</span>
+				<p class="answer-detail-text" th:text="${answer.question.correctAnswer}"></p>
+			</div>
+
+			<div class="answer-detail-row">
+				<span class="answer-detail-label">解説</span>
+				<p class="answer-detail-text" th:text="${answer.question.explanation}"></p>
+			</div>
+
+			<div class="button-area">
+				<a
+					th:href="@{/team2/questions/{questionId}/answer(questionId=${answer.question.questionId})}"
+					class="btn btn-primary">
+					もう一度回答する
+				</a>
+			</div>
+
+		</div>
+
+	</div>
 </body>
+
 </html>

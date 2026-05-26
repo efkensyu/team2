@@ -3,9 +3,9 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="/team2/css/team2_header.css">
-	<link rel="stylesheet" type="text/css" href="/team2/css/team2_main.css">
-	<link rel="stylesheet" type="text/css" href="/team2/css/team2_logs_create.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_header.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_main.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_logs_create.css}">
 	<title>study log - 学習記録登録</title>
 </head>
 
@@ -53,11 +53,12 @@
 
 			<!-- 学習日 -->
 			<div class="form-row">
-			    <span class="form-label">学習日<span class="required">必須</span></span>
-			    <div class="form-control-area">
-					<input type="date" id="studyDate" name="studyDate" class="form-input" th:value="${team2StudyLogsForm.studyDate}" />
-			        <span th:if="${#fields.hasErrors('studyDate')}" th:errors="*{studyDate}" class="form-error"></span>
-			    </div>
+				<span class="form-label">学習日<span class="required">必須</span></span>
+				<div class="form-control-area">
+					<input type="date" id="studyDate" name="studyDate" class="form-input"
+						th:value="${team2StudyLogsForm.studyDate}" />
+					<span th:if="${#fields.hasErrors('studyDate')}" th:errors="*{studyDate}" class="form-error"></span>
+				</div>
 			</div>
 
 
@@ -71,7 +72,8 @@
 					<span th:text="分"></span>
 					<span class="input-note">1分以上で入力してください</span>
 					<span th:if="${#fields.hasErrors('studyHour')}" th:errors="*{studyHour}" class="form-error"></span>
-					<span th:if="${#fields.hasErrors('studyMinute')}" th:errors="*{studyMinute}" class="form-error"></span>
+					<span th:if="${#fields.hasErrors('studyMinute')}" th:errors="*{studyMinute}"
+						class="form-error"></span>
 					<span th:if="${studyTimeError}" th:text="${studyTimeError}" class="form-error"></span>
 				</div>
 			</div>

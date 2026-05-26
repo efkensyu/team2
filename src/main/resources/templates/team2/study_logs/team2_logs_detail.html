@@ -3,9 +3,9 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="/team2/css/team2_header.css">
-	<link rel="stylesheet" type="text/css" href="/team2/css/team2_main.css">
-	<link rel="stylesheet" type="text/css" href="/team2/css/team2_logs_detail.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_header.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_main.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_logs_detail.css}">
 	<title>study log - 学習記録詳細</title>
 </head>
 
@@ -56,7 +56,8 @@
 				</a>
 
 				<form th:action="@{/team2/logs/{id}/delete(id=${log.studyLogId})}" method="post">
-					<button type="submit" class="detail-delete-button" onclick="return confirm('この学習記録を削除しますか？')">削除</button>
+					<button type="submit" class="detail-delete-button"
+						onclick="return confirm('この学習記録を削除しますか？')">削除</button>
 				</form>
 
 			</div>

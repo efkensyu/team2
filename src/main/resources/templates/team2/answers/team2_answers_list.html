@@ -5,29 +5,58 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_header.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_main.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_answers_lists.css}">
 	<title>採点結果一覧画面</title>
 </head>
 
 <body>
 	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
 
+	<div class="page-wrapper answer-list-wrapper">
+
 		<div class="page-header">
 			<a class="back-link" th:href="@{/team2/home}" th:text="'← 戻る'"></a>
-			<h1 class="page-title" th:text="採点結果一覧"> </h1>
+			<h1 class="page-title">採点結果一覧</h1>
 		</div>
-		
-		<div th:each="answer : ${answers}">
-			<span th:text="${#temporals.format(answer.createdAt, 'yyyy年MM月dd日')}"></span>
-			<span th:text="${answer.question.questionText}"></span>
-			<span th:text="${answer.userAnswer}"></span>
-			<span th:if="${answer.isCorrect == 1}">正解</span>
-			<span th:if="${answer.isCorrect == 0}">不正解</span>
-			<a th:href="@{/team2/answers/{answerId}(answerId=${answer.answerId})}">
-				<button type="button">詳細</button>
-			</a>
-		</div>
-	
 
+		<p class="empty-message" th:if="${#lists.isEmpty(answers)}">
+			採点結果がありません
+		</p>
+
+		<div class="answer-list" th:if="${!#lists.isEmpty(answers)}">
+
+			<div class="content-card answer-card" th:each="answer : ${answers}">
+
+				<div class="answer-card-header">
+					<span th:text="${#temporals.format(answer.createdAt, 'yyyy年MM月dd日')}"></span>
+
+					<span class="answer-result correct" th:if="${answer.isCorrect == 1}">
+						正解
+					</span>
+
+					<span class="answer-result incorrect" th:if="${answer.isCorrect == 0}">
+						不正解
+					</span>
+				</div>
+
+				<p class="answer-question" th:text="${answer.question.questionText}"></p>
+
+				<p class="answer-user">
+					あなたの回答：
+					<span th:text="${answer.userAnswer}"></span>
+				</p>
+
+				<div class="button-area">
+					<a th:href="@{/team2/answers/{answerId}(answerId=${answer.answerId})}">
+						<button type="button">詳細</button>
+					</a>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
 </body>
 
 </html>

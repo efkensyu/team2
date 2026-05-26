@@ -1,0 +1,65 @@
+.result-message {
+	max-width: 760px;
+	margin: 0 auto 28px;
+	padding: 16px 20px;
+
+	border-radius: 8px;
+
+	font-size: 22px;
+	font-weight: bold;
+
+	text-align: center;
+}
+
+.result-message.correct {
+	background: #f3fff7;
+	color: #1b7a3d;
+	border: 1px solid #b7dfc8;
+}
+
+.result-message.incorrect {
+	background: #fff4f4;
+	color: #d93025;
+	border: 1px solid #ffcccc;
+}
+
+.result-list {
+	max-width: 760px;
+	margin: 0 auto;
+
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+}
+
+.result-item {
+	padding: 20px 24px;
+}
+
+.result-label {
+	display: block;
+	margin-bottom: 10px;
+
+	color: #7a859f;
+
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.result-text {
+	margin: 0;
+
+	color: #0b1f3a;
+
+	line-height: 1.8;
+}
+
+.result-main-text {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.button-area {
+	justify-content: center;
+	margin-top: 32px;
+}
