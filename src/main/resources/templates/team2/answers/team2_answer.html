@@ -13,7 +13,9 @@
 		<button type="button">戻る</button>
 	</a>
 	
-	<h4>回答する</h4>
+	<p class="form-error" th:if="${errorMessage}" th:text="${errorMessage}"></p>
+	
+	<h3>回答する</h3>
 	
 	<p>分野：<span th:text="${question.field.fieldName}"></span></p>
 	<p>学習名：<span th:text="${question.studyName}"></span></p>

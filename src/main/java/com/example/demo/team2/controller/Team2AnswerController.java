@@ -34,7 +34,7 @@ public class Team2AnswerController {
 	//回答を送信して採点
 	@PostMapping("/team2/questions/{questionId}/answer")
 	public String answer(@PathVariable int questionId, 
-			@RequestParam String userAnswer,
+			@RequestParam(required = false) String userAnswer,
 			HttpSession session,
 			Model model) {
 		Team2Questions question = questionsService.findByQuestionId(questionId);

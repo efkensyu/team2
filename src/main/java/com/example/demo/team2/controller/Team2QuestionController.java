@@ -38,14 +38,16 @@ public class Team2QuestionController {
 	//問題作成画面を表示
 	@GetMapping("/team2/questions/create")
 	public String createQuestion(Model model) {
-		model.addAttribute("team2QuestionForm", new Team2Questions());
+		model.addAttribute("team2QuestionForm", new Team2QuestionForm());
 		System.out.println("問題作成画面へ遷移");
 		return "team2/questions/team2_questions_create";
 	}
 	
 	//問題を作成する
 	@PostMapping("/team2/questions/create")
-	public String createQuestion(@ModelAttribute @Validated Team2QuestionForm team2QuestionForm, BindingResult result, HttpSession session,  Model model) {
+	public String createQuestion
+	(@ModelAttribute @Validated Team2QuestionForm team2QuestionForm, BindingResult result, HttpSession session,  
+			Model model) {
 		//バリデーション
 		if (result.hasErrors()) {
 			System.out.println("問題作成失敗");
