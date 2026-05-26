@@ -83,7 +83,7 @@ public class Team2ProfileController {
 
 	//更新
 	@PostMapping("/team2/profile/edit")
-	public String updateProfile(@ModelAttribute @Validated Team2ProfileEditForm team2ProfileEditForm, BindingResult result, RedirectAttributes redirectAttributes, Model model) {
+	public String updateProfile(@ModelAttribute @Validated Team2ProfileEditForm team2ProfileEditForm, BindingResult result, RedirectAttributes redirectAttributes, HttpSession session, Model model) {
 
 		//バリデーション
 		if (result.hasErrors()) {
@@ -99,6 +99,7 @@ public class Team2ProfileController {
 		}
 
 		usersService.updateProfile(team2ProfileEditForm);
+		session.setAttribute("userName", team2ProfileEditForm.getUserName());
 		System.out.println("プロフィール更新成功");
 		redirectAttributes.addFlashAttribute("successMessage", "プロフィールを更新しました");
 
