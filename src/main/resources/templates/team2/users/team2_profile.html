@@ -16,13 +16,13 @@
 
 		<div class="page-header">
 			<a class="back-link" th:href="@{/team2/home}" th:text="'← 戻る'"></a>
-			<h1 class="page-title" th:text="プロフィール"></h1>
+			<h1 class="page-title">プロフィール</h1>
 		</div>
 		
 		<div class="success-message" th:if="${successMessage}" th:text="${successMessage}"></div>
 
 		<div class="profile-card-main">
-			<img src="/team2/img/team2_user.png" alt="user icon" class="profile-icon">
+			<img th:src="@{/team2/img/team2_user.png}" alt="user icon" class="profile-icon">
 
 			<div class="profile-info">
 				<div class="profile-name" th:text="${user.userName}"></div>
