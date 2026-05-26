@@ -33,7 +33,7 @@
 				<a th:href="@{/team2/profile/edit}" class="profile-action-link" th:text="プロフィール編集"></a>
 				<a th:href="@{/team2/profile/password}" class="profile-action-link" th:text="パスワード変更"></a>
 				<form th:action="@{/team2/logout}" method="post" class="logout-form">
-					<button type="submit" class="logout-button">ログアウト</button>
+					<button type="submit" class="logout-button" onclick="return confirm('ログアウトしますか？')">ログアウト</button>
 				</form>
 				<a th:href="@{/team2/profile/delete}" class="profile-danger-link" th:text="退会する"></a>
 			</div>
@@ -68,6 +68,8 @@
 				<span th:text="登録する"></span>
 			</a>
 		</div>
+		
+		<p class="empty-message" th:if="${#lists.isEmpty(myLogs)}" th:text="まだ学習記録がありません"></p>
 
 		<div class="profile-log-list">
 			<div class="profile-log-card" th:each="log : ${myLogs}">

@@ -12,17 +12,16 @@
 <body>
 	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
 
-	<div class="profile-delete-wrapper">
+	<div class="page-wrapper profile-delete-wrapper">
 
-		<a class="back-link" th:href="@{/team2/profile}">
-			← 戻る
-		</a>
-
-		<h1 class="page-title">退会</h1>
+		<div class="page-header">
+			<a class="back-link" th:href="@{/team2/profile}" th:text="'← 戻る'"></a>
+			<h1 class="page-title" th:text="退会"></h1>
+		</div>
 
 		<div class="warning-box">
 			<p class="warning-title">
-				⚠ 注意
+				⚠ 注意 ⚠
 			</p>
 
 			<p class="warning-text">
@@ -48,7 +47,8 @@
 
 			</div>
 
-			<input class="delete-button" type="submit" value="退会する" onclick="return confirm('本当に退会しますか？')" />
+			<input class="delete-button" type="submit" value="退会する"
+				onclick="return confirm('退会するとデータは元に戻せません。本当に退会しますか？')" />
 
 		</form>
 

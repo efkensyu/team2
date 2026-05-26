@@ -24,4 +24,11 @@ public interface Team2StudyLogsRepository extends JpaRepository<Team2StudyLogs, 
 	//自分の全記録
 	@EntityGraph(attributePaths = {"user", "field"})
 	List<Team2StudyLogs> findByUserId(int userId);
+	
+	//検索
+	List<Team2StudyLogs> findByStudyNameContainingOrUser_UserNameContainingOrField_FieldNameContainingOrderByStudyDateDesc(
+	        String studyName,
+	        String userName,
+	        String fieldName
+	);
 }

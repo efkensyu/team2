@@ -200,3 +200,10 @@ a:hover {
 	color: #1b7a3d;
 	font-weight: bold;
 }
+
+.empty-message {
+	text-align: center;
+	padding: 40px 16px;
+	color: #7a859f;
+	font-size: 15px;
+}

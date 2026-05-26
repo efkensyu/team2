@@ -21,10 +21,35 @@
 			<a class="back-link" th:href="@{/team2/home}" th:text="'← 戻る'"></a>
 			<h1 class="page-title" th:text="タイムライン"> </h1>
 		</div>
-		
+
 		<div class="success-message" th:if="${successMessage}" th:text="${successMessage}"></div>
 
-		<div class="logs-list">
+		<form th:action="@{/team2/logs}" method="get" class="search-form">
+
+			<input type="text" name="keyword" th:value="${keyword}" class="search-input"
+				placeholder="学習名・ユーザ名・分野名で検索">
+
+			<button type="submit" class="search-button">
+				検索
+			</button>
+
+			<a th:href="@{/team2/logs}" class="clear-button">
+				クリア
+			</a>
+
+		</form>
+
+		<p class="empty-message"
+			th:if="${#lists.isEmpty(logs) and (keyword == null or keyword == '')}">
+			学習記録がありません
+		</p>
+		
+		<p class="empty-message"
+			th:if="${#lists.isEmpty(logs) and keyword != null and keyword != ''}">
+			検索結果がありません
+		</p>
+
+		<div class="logs-list" th:if="${!#lists.isEmpty(logs)}">
 
 			<div class="log-card" th:each="log : ${logs}">
 
@@ -37,14 +62,14 @@
 
 					</div>
 
-					<span class="log-date"th:text="${#temporals.format(log.studyDate, 'yyyy年MM月dd日')}"></span>
+					<span class="log-date" th:text="${#temporals.format(log.studyDate, 'yyyy年MM月dd日')}"></span>
 
 				</div>
 
 				<div class="log-field" th:text="${log.field.fieldName}"></div>
 
 				<div class="log-title" th:text="${log.studyName}"></div>
-				
+
 				<div class="log-time" th:text="${log.studyTime / 60} + '時間' + ${log.studyTime % 60} + '分'"></div>
 				<div class="log-action">
 					<a th:href="@{/team2/logs/{id}(id=${log.studyLogId})}" class="detail-link">
@@ -55,4 +80,5 @@
 		</div>
 	</div>
 </body>
+
 </html>

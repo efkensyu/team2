@@ -86,7 +86,7 @@ public class Team2StudyLogsService {
 	public int getWeeklyStudyTime(int userId) {
 		LocalDate now = LocalDate.now();
 		LocalDate start = now.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-	    LocalDate end = now.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
+		LocalDate end = now.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
 		return studyLogsRepository.findByUserId(userId).stream()
 				.filter(l -> !l.getStudyDate().isBefore(start) && !l.getStudyDate().isAfter(end))
 				.mapToInt(Team2StudyLogs::getStudyTime).sum();
@@ -95,7 +95,24 @@ public class Team2StudyLogsService {
 	//今日の学習時間
 	public int getDailyStudyTime(int userId) {
 		LocalDate today = LocalDate.now();
-		return studyLogsRepository.findByUserId(userId).stream().filter(l -> l.getStudyDate().equals(today)).mapToInt(Team2StudyLogs::getStudyTime).sum();
+		return studyLogsRepository.findByUserId(userId).stream().filter(l -> l.getStudyDate().equals(today))
+				.mapToInt(Team2StudyLogs::getStudyTime).sum();
+	}
+
+	
+	//検索
+	public List<Team2StudyLogs> searchLogs(String keyword) {
+		if (keyword == null || keyword.isBlank()) {
+			return findAll();
+		}
+
+		String trimmedKeyword = keyword.trim();
+
+		return studyLogsRepository
+				.findByStudyNameContainingOrUser_UserNameContainingOrField_FieldNameContainingOrderByStudyDateDesc(
+						trimmedKeyword,
+						trimmedKeyword,
+						trimmedKeyword);
 	}
 
 }
