@@ -25,12 +25,12 @@
 			<form method="post" th:action="@{/team2/login}" th:object="${team2LoginForm}">
 
 				<span class="form-label" th:text="ログインID"></span>
-				<input type="text" th:field="*{loginId}" class="form-input" />
-				<span th:if="${#fields.hasErrors('loginId')}" th:errors="*{loginId}" placeholder="ID" class="form-error"></span>
+				<input type="text" th:field="*{loginId}" class="form-input" placeholder="ログインIDを入力" />
+				<span th:if="${#fields.hasErrors('loginId')}" th:errors="*{loginId}" class="form-error"></span>
 
 				<span class="form-label" th:text="パスワード"></span>
-				<input type="password" th:field="*{password}" class="form-input" />
-				<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" placeholder="password" class="form-error"></span>
+				<input type="password" th:field="*{password}" class="form-input"  placeholder="パスワードを入力"/>
+				<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="form-error"></span>
 
 				<input type="submit" value="ログイン" class="btn btn-primary" />
 			</form>

@@ -27,7 +27,7 @@
 			<input type="hidden" th:field="*{studyLogId}">
 
 			<div class="form-row">
-				<span class="form-label" th:text="分野名"></span>
+				<span class="form-label">分野名<span class="required">必須</span></span>
 				<div class="form-control-area">
 					<select th:field="*{fieldId}">
 						<option value="0" th:text="選択してください"></option>
@@ -41,15 +41,16 @@
 			</div>
 
 			<div class="form-row">
-				<span class="form-label" th:text="学習名"></span>
+				<span class="form-label">学習名<span class="required">必須</span></span>
 				<div class="form-control-area">
-					<input type="text" th:field="*{studyName}" class="form-input" />
+					<input type="text" th:field="*{studyName}" class="form-input" placeholder="例：ITパスポート" />
+					<span class="input-note">100文字以内で入力してください</span>
 					<span th:if="${#fields.hasErrors('studyName')}" th:errors="*{studyName}" class="form-error"></span>
 				</div>
 			</div>
 
 			<div class="form-row">
-				<span class="form-label" th:text="学習日"></span>
+				<span class="form-label">学習日<span class="required">必須</span></span>
 				<div class="form-control-area">
 					<input type="date" th:field="*{studyDate}" class="form-input" />
 					<span th:if="${#fields.hasErrors('studyDate')}" th:errors="*{studyDate}" class="form-error"></span>
@@ -57,14 +58,14 @@
 			</div>
 
 			<div class="form-row">
-				<span class="form-label" th:text="学習時間"></span>
+				<span class="form-label">学習時間<span class="required">必須</span></span>
 				<div class="form-control-area time-area">
 					<input type="number" th:field="*{studyHour}" min="0" class="time-input" />
 					<span th:text="時間"></span>
 
 					<input type="number" th:field="*{studyMinute}" min="0" max="59" class="time-input" />
 					<span th:text="分"></span>
-
+					<span class="input-note">1分以上で入力してください</span>
 					<span th:if="${#fields.hasErrors('studyHour')}" th:errors="*{studyHour}" class="form-error"></span>
 					<span th:if="${#fields.hasErrors('studyMinute')}" th:errors="*{studyMinute}"
 						class="form-error"></span>
@@ -73,9 +74,10 @@
 			</div>
 
 			<div class="form-row">
-				<span class="form-label" th:text="学習内容"></span>
+				<span class="form-label">学習内容</span>
 				<div class="form-control-area">
 					<textarea th:field="*{studyContent}" placeholder="学習した内容を入力してください"></textarea>
+					<span class="input-note">300文字以内で入力してください</span>
 					<span th:if="${#fields.hasErrors('studyContent')}" th:errors="*{studyContent}"
 						class="form-error"></span>
 				</div>

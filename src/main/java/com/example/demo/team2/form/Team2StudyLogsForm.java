@@ -26,6 +26,7 @@ public class Team2StudyLogsForm {
 	private LocalDate studyDate;
 	
 	@NotBlank(message = "学習名を入力してください")
+	@Size(max = 100, message = "学習名は100字で記述してください")
 	private String studyName;
 	
 	@Size(max = 300, message = "学習内容は300字で記述してください")

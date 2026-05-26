@@ -18,7 +18,7 @@
 			<a class="back-link" th:href="@{/team2/logs}" th:text="'← 戻る'"></a>
 			<h1 class="page-title" th:text="学習記録詳細"></h1>
 		</div>
-		
+
 		<div class="success-message" th:if="${successMessage}" th:text="${successMessage}"></div>
 
 		<div class="detail-card">
@@ -49,16 +49,16 @@
 				<div class="detail-value" th:text="${log.studyTime / 60} + '時間' + ${log.studyTime % 60} + '分'"></div>
 			</div>
 
-			<div class="detail-actions">
+			<div class="detail-actions" th:if="${log.userId == session.userId}">
+
 				<a th:href="@{/team2/logs/{id}/edit(id=${log.studyLogId})}" class="detail-edit-link">
 					<span th:text="'編集'"></span>
 				</a>
 
 				<form th:action="@{/team2/logs/{id}/delete(id=${log.studyLogId})}" method="post">
-					<button type="submit" class="detail-delete-button" onclick="return confirm('この学習記録を削除しますか？')">
-						削除
-					</button>
+					<button type="submit" class="detail-delete-button" onclick="return confirm('この学習記録を削除しますか？')">削除</button>
 				</form>
+
 			</div>
 
 		</div>
