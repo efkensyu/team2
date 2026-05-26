@@ -28,8 +28,8 @@ public class Team2QuestionController {
 	//問題一覧を表示
 	@GetMapping("/team2/questions")
 	public String show(Model model) {
-		List<Team2Questions> questions = questionsService.findAll();
-		model.addAttribute("questions", questions);
+		List<Team2Questions> team2Questions = questionsService.findAll();
+		model.addAttribute("questions", team2Questions);
 		System.out.println("問題一覧画面へ遷移");
 		return "team2/questions/team2_questions";
 		
@@ -54,21 +54,18 @@ public class Team2QuestionController {
 			System.out.println("問題作成失敗");
 			return "team2/questions/team2_questions_create";
 		}
+		
+		//選択肢入ってるかチェック
+		questionsService.checkChoices(team2QuestionForm, result);
+		if (result.hasErrors()) {
+			System.out.println("問題作成失敗");
+			return "team2/questions/team2_questions_create";
+		}
+		
 		int userId = (int) session.getAttribute("userId");
 		
-		//Formの値をEntityに詰め替え
-		Team2Questions team2Questions = new Team2Questions();
-		team2Questions.setUserId(userId);
-		team2Questions.setFieldId(team2QuestionForm.getFieldId());
-		team2Questions.setStudyName(team2QuestionForm.getStudyName());
-		team2Questions.setQuestionType(team2QuestionForm.getQuestionType());
-		team2Questions.setQuestionText(team2QuestionForm.getQuestionText());
-		team2Questions.setChoiceA(team2QuestionForm.getChoiceA());
-		team2Questions.setChoiceB(team2QuestionForm.getChoiceB());
-		team2Questions.setChoiceC(team2QuestionForm.getChoiceC());
-		team2Questions.setChoiceD(team2QuestionForm.getChoiceD());
-		team2Questions.setCorrectAnswer(team2QuestionForm.getCorrectAnswer());
-		team2Questions.setExplanation(team2QuestionForm.getExplanation());
+		//FormからEntity
+		Team2Questions team2Questions = questionsService.convertToEntity(team2QuestionForm,userId);
 		
 		//Entityに保存
 		questionsService.save(team2Questions);
@@ -80,8 +77,9 @@ public class Team2QuestionController {
 	//問題詳細を表示
 	@GetMapping("/team2/questions/{questionId}")
 	public String detailQuestion(@PathVariable int questionId, Model model) {
-		Team2Questions question = questionsService.findByQuestionId(questionId);
-		model.addAttribute("question", question);
+		Team2Questions team2Questions = questionsService.findByQuestionId(questionId);
+		
+		model.addAttribute("team2Questions", team2Questions);
 		System.out.println("問題詳細画面へ遷移");
 		return "team2/questions/team2_questions_detail";
 	}
@@ -89,21 +87,43 @@ public class Team2QuestionController {
 	//編集画面を表示
 	@GetMapping("/team2/questions/{questionId}/edit")
 	public String editQuestion(@PathVariable int questionId, Model model) {
-		Team2Questions question = questionsService.findByQuestionId(questionId);
+		Team2Questions team2Questions = questionsService.findByQuestionId(questionId);
 		
+		//EntityからForm
+		Team2QuestionForm team2QuestionForm = questionsService.convertToForm(team2Questions);
 		
-		model.addAttribute("team2QuestionForm", question);
+		model.addAttribute("team2QuestionForm", team2QuestionForm);
+		model.addAttribute("questionId", questionId);
 		System.out.println("問題編集画面へ遷移");
 		return "team2/questions/team2_questions_edit";
 	}
 	
 	//編集する
 	@PostMapping("/team2/questions/{questionId}/edit")
-	public String updateQuestion(@PathVariable int questionId, @ModelAttribute Team2Questions team2QuestionForm, HttpSession session) {
+	public String updateQuestion(@PathVariable int questionId, @ModelAttribute @Validated Team2QuestionForm team2QuestionForm, BindingResult result, HttpSession session) {
+		//バリデーション
+		if (result.hasErrors()) {
+			System.out.println("問題編集失敗");
+			return "/team2/questions/team2_questions_edit";
+		}
+		
+		//選択肢入ってるかチェック
+		questionsService.checkChoices(team2QuestionForm, result);
+		if (result.hasErrors()) {
+			System.out.println("問題作成失敗");
+			return "/team2/questions/team2_questions_edit";
+		}
+		
 		int userId = (int) session.getAttribute("userId");
-		team2QuestionForm.setQuestionId(questionId);
-		team2QuestionForm.setUserId(userId);
-		questionsService.save(team2QuestionForm);
+		
+		//FormからEntity
+		Team2Questions team2Questions = questionsService.convertToEntity(team2QuestionForm,userId);
+				
+		team2Questions.setQuestionId(questionId);
+		
+		//Entityに保存
+		questionsService.save(team2Questions);
+		
 		System.out.println("問題を編集する");
 		return "redirect:/team2/questions";
 	}

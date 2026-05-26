@@ -19,72 +19,72 @@
 			<table class="question-detail-table">
 				<tr>
 					<th>作成者</th>
-					<td th:text="${question.user.userName}"></td>
+					<td th:text="${team2Questions.user.userName}"></td>
 				</tr>
 				
 				<tr>
 					<th>作成日</th>
-					<td th:text="${#temporals.format(question.createdAt, 'yyyy年MM月dd日')}"></td>
+					<td th:text="${#temporals.format(team2Questions.createdAt, 'yyyy年MM月dd日')}"></td>
 				</tr>
 				
 				<tr>
 					<th>分野</th>
-					<td th:text="${question.field.fieldName}"></td>
+					<td th:text="${team2Questions.field.fieldName}"></td>
 				</tr>
 				
 				<tr>
 					<th>学習名</th>
-					<td th:text="${question.studyName}"></td>
+					<td th:text="${team2Questions.studyName}"></td>
 				</tr>
 				
 				<tr>
 					<th>問題形式</th>
-					<td th:text="${question.questionType}"></td>
+					<td th:text="${team2Questions.questionType}"></td>
 				</tr>
 				
 				<tr>
 					<th>問題文</th>
-					<td th:text="${question.questionText}"></td>
+					<td th:text="${team2Questions.questionText}"></td>
 				</tr>
 				
-				<tr th:if="${question.questionType == '選択式'}">
+				<tr th:if="${team2Questions.questionType == '選択式'}">
 					<th>選択肢A</th>
-					<td th:text="${question.choiceA}"></td>
+					<td th:text="${team2Questions.choiceA}"></td>
 				</tr>
 				
-				<tr th:if="${question.questionType == '選択式'}">
+				<tr th:if="${team2Questions.questionType == '選択式'}">
 					<th>選択肢B</th>
-					<td th:text="${question.choiceB}"></td>
+					<td th:text="${team2Questions.choiceB}"></td>
 				</tr>
 				
-				<tr th:if="${question.questionType == '選択式'}">
+				<tr th:if="${team2Questions.questionType == '選択式'}">
 					<th>選択肢C</th>
-					<td th:text="${question.choiceC}"></td>
+					<td th:text="${team2Questions.choiceC}"></td>
 				</tr>
 				
-				<tr th:if="${question.questionType == '選択式'}">
+				<tr th:if="${team2Questions.questionType == '選択式'}">
 					<th>選択肢D</th>
-					<td th:text="${question.choiceD}"></td>
+					<td th:text="${team2Questions.choiceD}"></td>
 				</tr>
 				
 				<tr>
 					<th>解答</th>
-					<td th:text="${question.correctAnswer}"></td>
+					<td th:text="${team2Questions.correctAnswer}"></td>
 				</tr>
 				
 				<tr>
 					<th>解説</th>
-					<td th:text="${question.explanation}"></td>
+					<td th:text="${team2Questions.explanation}"></td>
 				</tr>
 			</table>
 		</div>
 		
 		<div class="button-area">
-			<a th:href="@{/team2/questions/{id}/edit(id=${question.questionId})}">
+			<a th:href="@{/team2/questions/{id}/edit(id=${team2Questions.questionId})}">
 				<button type="button">編集</button>
 			</a>
 		
-				<form th:action="@{/team2/questions/{id}/delete(id=${question.questionId})}" method="post">
+				<form th:action="@{/team2/questions/{id}/delete(id=${team2Questions.questionId})}" method="post">
 					<button type="submit" class="delete-button" onclick="return confirm('削除しますか？')">削除</button>
 				</form>
 	
