@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.team2.entity.Team2StudyLogs;
 import com.example.demo.team2.entity.Team2User;
@@ -82,8 +83,7 @@ public class Team2ProfileController {
 
 	//更新
 	@PostMapping("/team2/profile/edit")
-	public String updateProfile(@ModelAttribute @Validated Team2ProfileEditForm team2ProfileEditForm,
-			BindingResult result, Model model) {
+	public String updateProfile(@ModelAttribute @Validated Team2ProfileEditForm team2ProfileEditForm, BindingResult result, RedirectAttributes redirectAttributes, Model model) {
 
 		//バリデーション
 		if (result.hasErrors()) {
@@ -100,6 +100,7 @@ public class Team2ProfileController {
 
 		usersService.updateProfile(team2ProfileEditForm);
 		System.out.println("プロフィール更新成功");
+		redirectAttributes.addFlashAttribute("successMessage", "プロフィールを更新しました");
 
 		return "redirect:/team2/profile";
 	}
@@ -112,8 +113,7 @@ public class Team2ProfileController {
 
 	//パスワード変更
 	@PostMapping("/team2/profile/password")
-	public String updatePassword(@ModelAttribute @Validated Team2PasswordEditForm team2PasswordEditForm,
-			BindingResult result, HttpSession session, Model model) {
+	public String updatePassword(@ModelAttribute @Validated Team2PasswordEditForm team2PasswordEditForm, BindingResult result, HttpSession session, RedirectAttributes redirectAttributes, Model model) {
 		int userId = (int) session.getAttribute("userId");
 
 		//バリデーション
@@ -137,6 +137,7 @@ public class Team2ProfileController {
 		}
 
 		usersService.updatePassword(userId, team2PasswordEditForm.getNewPassword());
+		redirectAttributes.addFlashAttribute("successMessage", "パスワードを変更しました");
 		return "redirect:/team2/profile";
 	}
 	
@@ -148,7 +149,7 @@ public class Team2ProfileController {
 	
 	//退会
 	@PostMapping("team2/profile/delete")
-	public String delete(@ModelAttribute @Validated Team2ProfileDeleteForm team2ProfileDeleteForm, BindingResult result, HttpSession session, Model model) {
+	public String delete(@ModelAttribute @Validated Team2ProfileDeleteForm team2ProfileDeleteForm, BindingResult result, HttpSession session, RedirectAttributes redirectAttributes, Model model) {
 		
 		//バリデーション
 		if (result.hasErrors()) {
@@ -168,6 +169,7 @@ public class Team2ProfileController {
 		usersService.delete(userId);
 		session.invalidate();
 		System.out.println("退会成功");
+		redirectAttributes.addFlashAttribute("successMessage", "退会処理が完了しました");
 		return "redirect:/team2/login";
 	}
 

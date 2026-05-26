@@ -18,6 +18,8 @@
 			<a class="back-link" th:href="@{/team2/home}" th:text="'← 戻る'"></a>
 			<h1 class="page-title" th:text="プロフィール"></h1>
 		</div>
+		
+		<div class="success-message" th:if="${successMessage}" th:text="${successMessage}"></div>
 
 		<div class="profile-card-main">
 			<img src="/team2/img/team2_user.png" alt="user icon" class="profile-icon">
@@ -30,6 +32,9 @@
 			<div class="profile-actions">
 				<a th:href="@{/team2/profile/edit}" class="profile-action-link" th:text="プロフィール編集"></a>
 				<a th:href="@{/team2/profile/password}" class="profile-action-link" th:text="パスワード変更"></a>
+				<form th:action="@{/team2/logout}" method="post" class="logout-form">
+					<button type="submit" class="logout-button">ログアウト</button>
+				</form>
 				<a th:href="@{/team2/profile/delete}" class="profile-danger-link" th:text="退会する"></a>
 			</div>
 		</div>
@@ -72,7 +77,6 @@
 				</div>
 
 				<div class="profile-log-title" th:text="${log.studyName}"></div>
-				<div class="profile-log-content" th:text="${log.studyContent}"></div>
 
 				<div class="profile-log-footer">
 					<span class="profile-log-time"

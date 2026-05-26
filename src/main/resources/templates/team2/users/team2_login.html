@@ -18,12 +18,14 @@
 		<h1 class="page-title">ログイン</h1>
 
 		<div class="form-card">
+			
+			<div class="success-message" th:if="${successMessage}" th:text="${successMessage}"></div>
 
 			<p th:if="${errorMessage}" th:text="${errorMessage}"></p>
 			<form method="post" th:action="@{/team2/login}" th:object="${team2LoginForm}">
 
 				<span class="form-label" th:text="ログインID"></span>
-				<input type="text" th:field="*{loginId}" class="form-input"　/>
+				<input type="text" th:field="*{loginId}" class="form-input" />
 				<span th:if="${#fields.hasErrors('loginId')}" th:errors="*{loginId}" placeholder="ID" class="form-error"></span>
 
 				<span class="form-label" th:text="パスワード"></span>
