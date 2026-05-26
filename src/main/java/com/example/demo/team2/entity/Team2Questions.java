@@ -42,8 +42,9 @@ public class Team2Questions {
 
 	@Column(name = "study_name")
 	private String studyName;
-
-	@Column(name = "question_type")
+	
+	
+	@Column(name = "question_type", nullable = false)
 	private String questionType;
 
 	@Column(name = "question_text")

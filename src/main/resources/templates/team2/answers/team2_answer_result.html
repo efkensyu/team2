@@ -8,7 +8,7 @@
 </head>
 <body>
 	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
-	<h1>採点結果</h1>
+	<h1 class="page-title" th:text="採点結果"></h1>
 	
 	<p>問題文：<span th:text="${question.questionText}"></span></p>
 	<p>あなたの回答：<span th:text="${userAnswer}"></span></p>
