@@ -1,31 +1,30 @@
 <!doctype html>
-<html>
+<html xmlns:th="http://www.thymeleaf.ofg">
+
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="/team2/css/team2_error.css">
-<title>
-エラー
-</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_header.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_main.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_error.css}">
+	<title>
+		エラー
+	</title>
 </head>
+
 <body>
-   <header class="header">
-        <span class="title">Study Log</span>
+	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
 
-        <div class="right-area">
-            <span class="name">〇〇さん</span>
-            <img src="/team2/img/team2_user.png" alt="ユーザーアイコン" height="50px" width="50px" >
-        </div>  
-   </header>
+	<div class="error_sign">
+		<img th:src="@{/team2/img/team2_error.png}" alt="エラー画像" height="144px" width="144px">
 
-   <div class="error_sign">
-        <img src="/team2/img/team2_error.png" alt="エラー画像" height="144px" width="144px">
-        <h3 class="error_red">データ取得失敗</h3>
-        <h4 class="error_msg">データの取得に失敗しました。再度実行して下さい。</h4>
-        <input class="return" type="submit" value="戻る" />
-   </div>
+		<h3 class="error_red">エラーが発生しました</h3>
 
-   
+		<h4 class="error_msg">
+			処理中にエラーが発生しました。もう一度操作してください。
+		</h4>
 
-   
+		<button type="button" onclick="history.back()">前のページへ戻る</button>
+	</div>
 </body>
+
 </html>
