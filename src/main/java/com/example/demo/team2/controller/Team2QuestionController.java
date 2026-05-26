@@ -48,6 +48,7 @@ public class Team2QuestionController {
 	public String createQuestion
 	(@ModelAttribute @Validated Team2QuestionForm team2QuestionForm, BindingResult result, HttpSession session,  
 			Model model) {
+
 		//バリデーション
 		if (result.hasErrors()) {
 			System.out.println("問題作成失敗");

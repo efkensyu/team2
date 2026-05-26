@@ -9,31 +9,87 @@
 </head>
 <body>
 	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
-	<h1 class="page-title" th:text="問題詳細画面"></h1>
-	<a th:href="@{/team2/questions}">
-		<button type="button">戻る</button>
-	</a>
-
-	<p>作成者：<span th:text="${question.user.userName}"></span></p>
-	<p>作成日：<span th:text="${#temporals.format(question.createdAt, 'yyyy年MM月dd日')}"></span></p>
-	<p>分野：<span th:text="${question.field.fieldName}"></span></p>
-	<p>学習名：<span th:text="${question.studyName}"></span></p>
-	<p>問題形式：<span th:text="${question.questionType}"></span></p>
-	<p>問題文：<span th:text="${question.questionText}"></span></p>
-	<p>選択肢A：<span th:text="${question.choiceA}"></span></p>
-	<p>選択肢B：<span th:text="${question.choiceB}"></span></p>
-	<p>選択肢C：<span th:text="${question.choiceC}"></span></p>
-	<p>選択肢D：<span th:text="${question.choiceD}"></span></p>
-	<p>解答：<span th:text="${question.correctAnswer}"></span></p>
-	<p>解説：<span th:text="${question.explanation}"></span></p>
-	
-	<a th:href="@{/team2/questions/{id}/edit(id=${question.questionId})}">
-			<button type="button">編集</button>
-		</a>
+	<div class="page-wrapper">
+		<div class="page-header">
+			<h1 class="page-title" th:text="問題詳細画面"></h1>
+			<a class="back-link" th:href="@{/team2/questions}" th:text="'← 戻る'"></a>
+		</div>
 		
-		<form th:action="@{/team2/questions/{id}/delete(id=${question.questionId})}" method="post">
-			<button type="submit" onclick="return confirm('削除しますか？')">削除</button>
-		</form>
+		<div class="content-card">
+			<table class="question-detail-table">
+				<tr>
+					<th>作成者</th>
+					<td th:text="${question.user.userName}"></td>
+				</tr>
+				
+				<tr>
+					<th>作成日</th>
+					<td th:text="${#temporals.format(question.createdAt, 'yyyy年MM月dd日')}"></td>
+				</tr>
+				
+				<tr>
+					<th>分野</th>
+					<td th:text="${question.field.fieldName}"></td>
+				</tr>
+				
+				<tr>
+					<th>学習名</th>
+					<td th:text="${question.studyName}"></td>
+				</tr>
+				
+				<tr>
+					<th>問題形式</th>
+					<td th:text="${question.questionType}"></td>
+				</tr>
+				
+				<tr>
+					<th>問題文</th>
+					<td th:text="${question.questionText}"></td>
+				</tr>
+				
+				<tr th:if="${question.questionType == '選択式'}">
+					<th>選択肢A</th>
+					<td th:text="${question.choiceA}"></td>
+				</tr>
+				
+				<tr th:if="${question.questionType == '選択式'}">
+					<th>選択肢B</th>
+					<td th:text="${question.choiceB}"></td>
+				</tr>
+				
+				<tr th:if="${question.questionType == '選択式'}">
+					<th>選択肢C</th>
+					<td th:text="${question.choiceC}"></td>
+				</tr>
+				
+				<tr th:if="${question.questionType == '選択式'}">
+					<th>選択肢D</th>
+					<td th:text="${question.choiceD}"></td>
+				</tr>
+				
+				<tr>
+					<th>解答</th>
+					<td th:text="${question.correctAnswer}"></td>
+				</tr>
+				
+				<tr>
+					<th>解説</th>
+					<td th:text="${question.explanation}"></td>
+				</tr>
+			</table>
+		</div>
+		
+		<div class="button-area">
+			<a th:href="@{/team2/questions/{id}/edit(id=${question.questionId})}">
+				<button type="button">編集</button>
+			</a>
+		
+				<form th:action="@{/team2/questions/{id}/delete(id=${question.questionId})}" method="post">
+					<button type="submit" class="delete-button" onclick="return confirm('削除しますか？')">削除</button>
+				</form>
+	
+		</div>	
+	</div>
 	
 </body>
 </html>

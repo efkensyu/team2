@@ -15,19 +15,18 @@
 	
 	<div class="page-wrapper">
 		<div class="page-header">
+			<a class="back-link" th:href="@{/team2/home}" th:text="'← 戻る'"></a>
 			<h1 class="page-title" th:text="問題新規作成画面"></h1>	
 		</div>
 		
-		<a th:href="@{/team2/questions}">
-			<button type="button">戻る</button>
-		</a>
 		
 		<div th:if="${errorMessage}">
 			<p class="form-error" th:each="msg : ${errorMessage}" th:text="${msg}"></p>
 		</div>
-		<form class="question-create-form" method="post" th:action="@{/team2/questions/create}" th:object="${team2QuestionForm}">
+		<form class="form-card" method="post" th:action="@{/team2/questions/create}" th:object="${team2QuestionForm}">
 			<table class="questionForm">
 			
+				
 			<!--分野-->
 			<tr>
 			<th>分野</th>
@@ -45,28 +44,28 @@
 			
 			<!--学習名-->
 			<tr>
-			<th>学習名</th>
-			<td>
-				<input type="text" th:field="*{studyName}" />
-				<span class="form-error" th:if="${#fields.hasErrors('studyName')}" th:errors="*{studyName}"></span>
-			</td>
+				<th>学習名</th>
+				<td>
+					<input type="text" th:field="*{studyName}" />
+					<span class="form-error" th:if="${#fields.hasErrors('studyName')}" th:errors="*{studyName}"></span>
+				</td>
 			</tr>
 			
 			<!--問題種別-->
 			<tr>
-			<th>問題種別</th>
-			<td>
-				<div class="radio-group">
-					<label>
-						<input type="radio" th:field="*{questionType}" value="選択式"/> 選択式
-					</label>
-					<label>
-						<input type="radio" th:field="*{questionType}" value="記述式"/> 記述式
-					</label>
-				</div>
-				
-				<span class="form-error" th:if="${#fields.hasErrors('questionType')}" th:errors="*{questionType}"></span>
-			</td>
+				<th>問題種別</th>
+				<td>
+					<div class="radio-group">
+						<label>
+							<input type="radio" th:field="*{questionType}" value="選択式"/> 選択式
+						</label>
+						<label>
+							<input type="radio" th:field="*{questionType}" value="記述式"/> 記述式
+						</label>
+					</div>
+					
+					<span class="form-error" th:if="${#fields.hasErrors('questionType')}" th:errors="*{questionType}"></span>
+				</td>
 			</tr>
 			
 			<!--問題文-->
@@ -136,8 +135,9 @@
 			
 			<br><br>
 			
-			<input type="submit" value="作成する">		
+			<input class=".btn-primary" type="submit" value="作成する">		
 		</form>
+		
 	
 	</div>
 
