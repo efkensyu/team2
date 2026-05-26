@@ -3,19 +3,25 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="/team2/css/team2_header.css">
-	<link rel="stylesheet" type="text/css" href="/team2/css/team2_main.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_header.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_main.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_questions.css}">
 	<title>問題編集画面</title>
 </head>
 
 <body>
 	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
-	<h1>問題編集画面</h1>
+	<h1 class="page-title" th:text="問題編集画面"></h1>
 	<a th:href="@{/team2/questions/{questionId}/edit(questionId=${team2QuestionForm.questionId})}">
 		<button type="button">戻る</button>
 	</a>
 	
-	<p th:if="${errorMessage}" th:text="${errorMessage}"></p>
+
+	<div th:if="${errorMessage}">
+		<p class="form-error" th:each="msg : ${errorMessage}" th:text="${msg}"></p>
+	</div>
+	
+	
 	<form method="post" th:action="@{/team2/questions/{questionId}/edit(questionId=${team2QuestionForm.questionId})}" th:object="${team2QuestionForm}">
 		<table class="questionForm">
 		

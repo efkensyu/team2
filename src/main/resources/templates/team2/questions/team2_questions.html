@@ -3,39 +3,45 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="/team2/css/team2_header.css">
-	<link rel="stylesheet" type="text/css" href="/team2/css/team2_main.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_header.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_main.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_questions.css}">
 	<title>問題一覧画面</title>
 </head>
 
 <body>
 	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
 	
-	
-	<h1>問題一覧画面</h1>
-	<a th:href="@{/team2/home}">
-		<button type="button">戻る</button>
-	</a>
-	
-	<br>
-	<a th:href="@{/team2/questions/create}">
-		<button type="button">＋作成する</button>
-	</a>
-	
-	<div>
-		<div th:each="question : ${questions}">
-			<span th:text="${question.field.fieldName}"></span>
-			<span th:text="${question.studyName}"></span>
-			<span th:text="${question.user.userName}"></span>
-			<span th:text="${#temporals.format(question.createdAt, 'yyyy年MM月dd日')}"></span>
-			<a th:href="@{/team2/questions/{id}(id=${question.questionId})}">
-				<button type="button">詳細</button>
+	<div class="page-wrapper">
+		
+		<div class="page-header">
+			<a class="back-link" th:href="@{/team2/home}" th:text="'← 戻る'"></a>
+			<h1 class="page-title" th:text="問題一覧画面"></h1>
+		</div>
+		
+		<br>
+		<div class="button-area">
+			<a th:href="@{/team2/questions/create}">
+				<button type="button">＋作成する</button>
 			</a>
-			
-			<a th:href="@{/team2/questions/{id}/answer(id=${question.questionId})}">
-				<button type="button">回答する</button>
-			</a>
-			
+		</div>
+		
+		<div>
+			<div class="content-card" th:each="question : ${questions}">
+				<span th:text="${question.field.fieldName}"></span>
+				<span th:text="${question.studyName}"></span>
+				<span th:text="${question.user.userName}"></span>
+				<span th:text="${#temporals.format(question.createdAt, 'yyyy年MM月dd日')}"></span>
+				<div class="button-area">
+					<a th:href="@{/team2/questions/{id}(id=${question.questionId})}">
+						<button type="button">詳細</button>
+					</a>
+					
+					<a th:href="@{/team2/questions/{id}/answer(id=${question.questionId})}">
+						<button type="button">回答する</button>
+					</a>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

@@ -38,10 +38,18 @@ public class Team2AnswerController {
 			HttpSession session,
 			Model model) {
 		Team2Questions question = questionsService.findByQuestionId(questionId);
+		
+		//未入力チェック
+		if(userAnswer == null || userAnswer.trim().isEmpty()) {
+			model.addAttribute("question", question);
+			model.addAttribute("errorMessage", "回答を入力してください。");
+			return "team2/answers/team2_answer";
+		}
 		int userId = (int) session.getAttribute("userId");
 		
 		//正誤判定
-		boolean isCorrect = question.getCorrectAnswer().trim()
+		boolean isCorrect = question.getCorrectAnswer() != null &&
+				question.getCorrectAnswer().trim()
 				.equalsIgnoreCase(userAnswer.trim());
 		
 		//回答を保存

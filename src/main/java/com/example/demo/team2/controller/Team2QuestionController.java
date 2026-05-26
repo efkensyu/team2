@@ -6,12 +6,15 @@ import jakarta.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.team2.entity.Team2Questions;
+import com.example.demo.team2.form.Team2QuestionForm;
 import com.example.demo.team2.service.Team2QuestionsService;
 
 import lombok.RequiredArgsConstructor;
@@ -42,11 +45,30 @@ public class Team2QuestionController {
 	
 	//問題を作成する
 	@PostMapping("/team2/questions/create")
-	public String createQuestion(@ModelAttribute Team2Questions team2QuestionForm, HttpSession session) {
+	public String createQuestion(@ModelAttribute @Validated Team2QuestionForm team2QuestionForm, BindingResult result, HttpSession session,  Model model) {
+		//バリデーション
+		if (result.hasErrors()) {
+			System.out.println("問題作成失敗");
+			return "team2/questions/team2_questions_create";
+		}
 		int userId = (int) session.getAttribute("userId");
-		team2QuestionForm.setUserId(userId);
 		
-		questionsService.save(team2QuestionForm);
+		//Formの値をEntityに詰め替え
+		Team2Questions team2Questions = new Team2Questions();
+		team2Questions.setUserId(userId);
+		team2Questions.setFieldId(team2QuestionForm.getFieldId());
+		team2Questions.setStudyName(team2QuestionForm.getStudyName());
+		team2Questions.setQuestionType(team2QuestionForm.getQuestionType());
+		team2Questions.setQuestionText(team2QuestionForm.getQuestionText());
+		team2Questions.setChoiceA(team2QuestionForm.getChoiceA());
+		team2Questions.setChoiceB(team2QuestionForm.getChoiceB());
+		team2Questions.setChoiceC(team2QuestionForm.getChoiceC());
+		team2Questions.setChoiceD(team2QuestionForm.getChoiceD());
+		team2Questions.setCorrectAnswer(team2QuestionForm.getCorrectAnswer());
+		team2Questions.setExplanation(team2QuestionForm.getExplanation());
+		
+		//Entityに保存
+		questionsService.save(team2Questions);
 		System.out.println("問題を作成する");
 		return "redirect:/team2/questions";
 	}
