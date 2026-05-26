@@ -30,14 +30,4 @@ public class Team2HomeController {
 		System.out.println("ホーム画面へ遷移：" + team2LoginForm.getLoginId());
 		return "team2/team2_home";
 	}
-
-	//採点結果一覧
-	@GetMapping("/team2/answers")
-	public String answers(HttpSession session, Model model) {
-		Team2LoginForm team2LoginForm = (Team2LoginForm) session.getAttribute("team2LoginForm");
-	    model.addAttribute("team2LoginForm", team2LoginForm);
-		System.out.println("採点結果一覧画面へ遷移");
-		return "team2/answers/team2_answers";
-	}
-
 }

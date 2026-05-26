@@ -77,6 +77,7 @@ public class Team2QuestionController {
 		team2QuestionForm.setQuestionId(questionId);
 		team2QuestionForm.setUserId(userId);
 		questionsService.save(team2QuestionForm);
+		System.out.println("問題を編集する");
 		return "redirect:/team2/questions";
 	}
 	
@@ -84,6 +85,7 @@ public class Team2QuestionController {
 	@PostMapping("/team2/questions/{questionId}/delete")
 	public String deleteQuestion(@PathVariable int questionId) {
 		questionsService.delete(questionId);
+		System.out.println("問題を削除する");
 		return "redirect:/team2/questions";
 	}
 		
