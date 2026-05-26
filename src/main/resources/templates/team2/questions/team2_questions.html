@@ -20,19 +20,29 @@
 		</div>
 		
 		<br>
-		<div class="button-area">
-			<a th:href="@{/team2/questions/create}">
+		<div class="create-questions-button">
+			<a th:href="@{/team2/questions/create}" style="display: inline-block;">
 				<button type="button">＋作成する</button>
 			</a>
 		</div>
 		
+		
 		<div>
 			<div class="content-card" th:each="question : ${questions}">
-				<span th:text="${question.field.fieldName}"></span>
-				<span th:text="${question.studyName}"></span>
-				<span th:text="${question.user.userName}"></span>
-				<span th:text="${#temporals.format(question.createdAt, 'yyyy年MM月dd日')}"></span>
-				<div class="button-area">
+				
+				<div class="questions-user-area">
+					<img th:src="@{/team2/img/team2_user.png}" alt="user icon" class="user-icon">
+					<span th:text="${question.user.userName}"></span>
+				</div>
+				
+				<div class="question-date" th:text="${#temporals.format(question.createdAt, 'yyyy年MM月dd日')}"></div>
+				
+				<div class="question-field" th:text="${question.field.fieldName}"></div>
+				
+				<div class="question-title"th:text="${question.studyName}"></div>
+				
+				
+				<div class="question-button">
 					<a th:href="@{/team2/questions/{id}(id=${question.questionId})}">
 						<button type="button">詳細</button>
 					</a>
