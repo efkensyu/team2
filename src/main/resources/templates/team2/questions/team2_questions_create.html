@@ -77,51 +77,55 @@
 					<tr>
 						<th>問題文</th>
 						<td>
-							<textarea type="text" th:field="*{questionText}" ></textarea>
+							<textarea th:field="*{questionText}"></textarea>
 							<span class="form-error" th:if="${#fields.hasErrors('questionText')}"
 								th:errors="*{questionText}"></span>
 						</td>
 					</tr>
 
-					<!--選択肢A-->
-					<tr>
-						<th>選択肢A</th>
-						<td>
-							<input type="text" th:field="*{choiceA}" />
-							<span class="form-error" th:if="${#fields.hasErrors('choiceA')}"
-								th:errors="*{choiceA}"></span>
-						</td>
-					</tr>
+					<tbody id="choice-area">
 
-					<!--選択肢B-->
-					<tr>
-						<th>選択肢B</th>
-						<td>
-							<input type="text" th:field="*{choiceB}" />
-							<span class="form-error" th:if="${#fields.hasErrors('choiceB')}"
-								th:errors="*{choiceB}"></span>
-						</td>
-					</tr>
+						<!--選択肢A-->
+						<tr>
+							<th>選択肢A</th>
+							<td>
+								<input type="text" th:field="*{choiceA}" />
+								<span class="form-error" th:if="${#fields.hasErrors('choiceA')}"
+									th:errors="*{choiceA}"></span>
+							</td>
+						</tr>
 
-					<!--選択肢C-->
-					<tr>
-						<th>選択肢C</th>
-						<td>
-							<input type="text" th:field="*{choiceC}" />
-							<span class="form-error" th:if="${#fields.hasErrors('choiceC')}"
-								th:errors="*{choiceC}"></span>
-						</td>
-					</tr>
+						<!--選択肢B-->
+						<tr>
+							<th>選択肢B</th>
+							<td>
+								<input type="text" th:field="*{choiceB}" />
+								<span class="form-error" th:if="${#fields.hasErrors('choiceB')}"
+									th:errors="*{choiceB}"></span>
+							</td>
+						</tr>
 
-					<!--選択肢D-->
-					<tr>
-						<th>選択肢D</th>
-						<td>
-							<input type="text" th:field="*{choiceD}" />
-							<span class="form-error" th:if="${#fields.hasErrors('choiceD')}"
-								th:errors="*{choiceD}"></span>
-						</td>
-					</tr>
+						<!--選択肢C-->
+						<tr>
+							<th>選択肢C</th>
+							<td>
+								<input type="text" th:field="*{choiceC}" />
+								<span class="form-error" th:if="${#fields.hasErrors('choiceC')}"
+									th:errors="*{choiceC}"></span>
+							</td>
+						</tr>
+
+						<!--選択肢D-->
+						<tr>
+							<th>選択肢D</th>
+							<td>
+								<input type="text" th:field="*{choiceD}" />
+								<span class="form-error" th:if="${#fields.hasErrors('choiceD')}"
+									th:errors="*{choiceD}"></span>
+							</td>
+						</tr>
+
+					</tbody>
 
 					<!--正解-->
 					<tr>
@@ -137,7 +141,7 @@
 					<tr>
 						<th>解説</th>
 						<td>
-							<textarea th:field="*{explanation}" ></textarea>
+							<textarea th:field="*{explanation}"></textarea>
 							<span class="form-error" th:if="${#fields.hasErrors('explanation')}"
 								th:errors="*{explanation}"></span>
 						</td>
@@ -151,6 +155,30 @@
 			</form>
 		</div>
 	</div>
+
+	<script>
+		function toggleChoices() {
+
+			const selectedType =
+				document.querySelector('input[name="questionType"]:checked');
+
+			const choiceArea =
+				document.getElementById('choice-area');
+
+			if (selectedType.value === '選択式') {
+				choiceArea.style.display = '';
+			} else {
+				choiceArea.style.display = 'none';
+			}
+		}
+
+		document.querySelectorAll('input[name="questionType"]')
+			.forEach(radio => {
+				radio.addEventListener('change', toggleChoices);
+			});
+
+		window.onload = toggleChoices;
+	</script>
 
 
 </body>
