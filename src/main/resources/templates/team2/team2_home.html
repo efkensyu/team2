@@ -4,9 +4,9 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_header.css}">
-		<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_main.css}">
-		<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_home.css}">
-		<link rel="icon" type="image/png" th:href="@{/team2/img/team2_favicon.png}">
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_main.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/team2/css/team2_home.css}">
+	<link rel="icon" type="image/png" th:href="@{/team2/img/team2_favicon.png}">
 	<title>Study Log - ホーム</title>
 </head>
 
@@ -28,7 +28,7 @@
 					</span>
 				</span>
 			</a>
-			
+
 			<a th:href="@{/team2/logs}" class="home-menu-card">
 				<span class="home-menu-content">
 					<span class="home-menu-text">タイムライン</span>
@@ -43,6 +43,15 @@
 					<span class="home-menu-text">学習記録登録</span>
 					<span class="home-menu-description">
 						学習内容を記録できます
+					</span>
+				</span>
+			</a>
+
+			<a th:href="@{/team2/questions/create(from='home')}" class="home-menu-card">
+				<span class="home-menu-content">
+					<span class="home-menu-text">問題作成</span>
+					<span class="home-menu-description">
+						新しい問題を作成できます
 					</span>
 				</span>
 			</a>
