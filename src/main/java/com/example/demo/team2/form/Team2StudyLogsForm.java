@@ -22,7 +22,6 @@ public class Team2StudyLogsForm {
 	private int fieldId;
 	
 	@NotNull(message = "学習日を入力してください")
-	@PastOrPresent(message = "未来の日付は入力できません")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate studyDate;
 	

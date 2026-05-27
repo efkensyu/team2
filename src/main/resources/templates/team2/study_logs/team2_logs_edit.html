@@ -54,6 +54,7 @@
 				<div class="form-control-area">
 					<input type="date" th:field="*{studyDate}" class="form-input" />
 					<span th:if="${#fields.hasErrors('studyDate')}" th:errors="*{studyDate}" class="form-error"></span>
+					<span class="form-error" th:text="${studyDateError}"></span>
 				</div>
 			</div>
 

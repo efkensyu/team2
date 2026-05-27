@@ -58,6 +58,7 @@
 					<input type="date" id="studyDate" name="studyDate" class="form-input"
 						th:value="${team2StudyLogsForm.studyDate}" />
 					<span th:if="${#fields.hasErrors('studyDate')}" th:errors="*{studyDate}" class="form-error"></span>
+					<span class="form-error" th:text="${studyDateError}"></span>
 				</div>
 			</div>
 

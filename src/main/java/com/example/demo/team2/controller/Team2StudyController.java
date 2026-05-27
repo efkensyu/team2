@@ -76,6 +76,13 @@ public class Team2StudyController {
 			return "team2/study_logs/team2_logs_create";
 		}
 
+		//2010年より前は登録できない
+		if (team2StudyLogsForm.getStudyDate().isBefore(LocalDate.of(2010, 1, 1))) {
+			System.out.println("バリデーションエラー（学習日）");
+			model.addAttribute("studyDateError", "2010年以降の日付を入力してください");
+			return "team2/study_logs/team2_logs_create";
+		}
+
 		int userId = (int) session.getAttribute("userId");
 		studyLogsService.save(team2StudyLogsForm, userId);
 		System.out.println("学習記録登録成功");
@@ -125,12 +132,19 @@ public class Team2StudyController {
 			System.out.println("編集失敗（バリデーション）");
 			return "team2/study_logs/team2_logs_edit";
 		}
-		
+
 		// 0分は登録できない
 		if (team2StudyLogsForm.getStudyHour() == 0 && team2StudyLogsForm.getStudyMinute() == 0) {
 			System.out.println("バリデーションエラー（学習時間）");
 			model.addAttribute("studyTimeError", "学習時間を入力してください");
 			return "team2/study_logs/team2_logs_edit";
+		}
+		
+		//2010年より前は登録できない
+		if (team2StudyLogsForm.getStudyDate().isBefore(LocalDate.of(2010, 1, 1))) {
+			System.out.println("バリデーションエラー（学習日）");
+			model.addAttribute("studyDateError", "2010年以降の日付を入力してください");
+			return "team2/study_logs/team2_logs_create";
 		}
 
 		team2StudyLogsForm.setStudyLogId(id);
