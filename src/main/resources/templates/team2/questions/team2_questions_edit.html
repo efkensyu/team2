@@ -11,134 +11,132 @@
 
 <body>
 	<header th:replace="~{team2/kyoutu/team2_header :: header}"></header>
-	<h1 class="page-title" th:text="問題編集画面"></h1>
-	<a class="back-link" th:href="@{/team2/questions}" th:text="'← 戻る'"></a>
-	
 
-	<div th:if="${errorMessage}">
-		<p class="form-error" th:each="msg : ${errorMessage}" th:text="${msg}"></p>
-	</div>
-	
-	<div class="content-card">
-		<form method="post" 
-			th:action="@{/team2/questions/{questionId}/edit(questionId=${questionId})}" 
-			th:object="${team2QuestionForm}">
-			
-			<table class="questionForm">
-					
-				
-				<!--分野-->
-				<tr>
-				<th>分野</th>
-				<td>
-					<select th:field="*{fieldId}">
-						<option value="0">選択してください</option>
-						<option value="1">人間力</option>
-						<option value="2">技術力</option>
-						<option value="3">資格</option>
-						<option value="4">その他</option>
-					</select>
-					<span class="form-error" th:if="${#fields.hasErrors('fieldId')}" th:errors="*{fieldId}"></span>
-				</td>
-				</tr>
-				
-				<!--学習名-->
-				<tr>
-				<th>学習名</th>
-				<td>
-					<input type="text" th:field="*{studyName}" />
-					<span class="form-error" th:if="${#fields.hasErrors('studyName')}" th:errors="*{studyName}"></span>
-				</td>
-				</tr>
-				
-				<!--問題種別-->
-				<tr>
-				<th>問題種別</th>
-				<td>
-					<div class="radio-group">
-						<label>
-							<input type="radio" th:field="*{questionType}" value="選択式"/> 選択式
-						</label>
-						<label>
-							<input type="radio" th:field="*{questionType}" value="記述式"/> 記述式
-						</label>
-					</div>
-					<span class="form-error" th:if="${#fields.hasErrors('questionType')}" th:errors="*{questionType}"></span>
-				</td>
-				</tr>
-				
-				<!--問題文-->
-				<tr>
-					<th>問題文</th>
-					<td>
-						<input type="text" th:field="*{questionText}"/>
-						<span class="form-error" th:if="${#fields.hasErrors('questionText')}" th:errors="*{questionText}"></span>
-					</td>
-				</tr>
-				
-				<!--選択肢A-->
-				<tr>
-					<th>選択肢A</th>
-					<td>
-						<input type="text" th:field="*{choiceA}"/>
-						<span class="form-error" th:if="${#fields.hasErrors('choiceA')}" th:errors="*{choiceA}"></span>
-					</td>
-				</tr>
-				
-				<!--選択肢B-->
-				<tr>
-					<th>選択肢B</th>
-					<td>
-						<input type="text" th:field="*{choiceB}"/>
-						<span class="form-error" th:if="${#fields.hasErrors('choiceB')}" th:errors="*{choiceB}"></span>
-					</td>
-				</tr>
-				
-				<!--選択肢C-->
-				<tr>
-					<th>選択肢C</th>
-					<td>
-						<input type="text" th:field="*{choiceC}"/>
-						<span class="form-error" th:if="${#fields.hasErrors('choiceC')}" th:errors="*{choiceC}"></span>
-					</td>
-				</tr>
-				
-				<!--選択肢D-->
-				<tr>
-					<th>選択肢D</th>
-					<td>
-						<input type="text" th:field="*{choiceD}"/>
-						<span class="form-error" th:if="${#fields.hasErrors('choiceD')}" th:errors="*{choiceD}"></span>
-					</td>
-				</tr>
-				
-				<!--正解-->
-				<tr>
-					<th>正解</th>
-					<td>
-						<input type="text" th:field="*{correctAnswer}"/>
-						<span class="form-error" th:if="${#fields.hasErrors('correctAnswer')}" th:errors="*{correctAnswer}"></span>
-					</td>
-				</tr>
-				
-				<!--解説-->
-				<tr>
-					<th>解説</th>
-					<td>
-						<input type="text" th:field="*{explanation}"/>
-						<span class="form-error" th:if="${#fields.hasErrors('explanation')}" th:errors="*{explanation}"></span>
-					</td>
-				</tr>
-				
+	<div class="page-wrapper question-wrapper">
+		<div class="page-header">
+			<h1 class="page-title" th:text="問題編集画面"></h1>
+			<a class="back-link" th:href="@{/team2/questions}" th:text="'← 戻る'"></a>
+		</div>
+
+		<div th:if="${errorMessage}">
+			<p class="form-error" th:each="msg : ${errorMessage}" th:text="${msg}"></p>
+		</div>
+
+		<div class="content-card">
+			<form method="post" th:action="@{/team2/questions/{questionId}/edit(questionId=${questionId})}"
+				th:object="${team2QuestionForm}">
+
+				<table class="questionForm">
+					<tr>
+						<th>分野</th>
+						<td>
+							<select th:field="*{fieldId}">
+								<option value="0">選択してください</option>
+								<option value="1">人間力</option>
+								<option value="2">技術力</option>
+								<option value="3">資格</option>
+								<option value="4">その他</option>
+							</select>
+							<span class="form-error" th:if="${#fields.hasErrors('fieldId')}"
+								th:errors="*{fieldId}"></span>
+						</td>
+					</tr>
+
+					<tr>
+						<th>学習名</th>
+						<td>
+							<input type="text" th:field="*{studyName}" />
+							<span class="form-error" th:if="${#fields.hasErrors('studyName')}"
+								th:errors="*{studyName}"></span>
+						</td>
+					</tr>
+
+					<tr>
+						<th>問題種別</th>
+						<td>
+							<div class="radio-group">
+								<label>
+									<input type="radio" th:field="*{questionType}" value="選択式" /> 選択式
+								</label>
+								<label>
+									<input type="radio" th:field="*{questionType}" value="記述式" /> 記述式
+								</label>
+							</div>
+							<span class="form-error" th:if="${#fields.hasErrors('questionType')}"
+								th:errors="*{questionType}"></span>
+						</td>
+					</tr>
+
+					<tr>
+						<th>問題文</th>
+						<td>
+							<textarea th:field="*{questionText}"></textarea>
+							<span class="form-error" th:if="${#fields.hasErrors('questionText')}"
+								th:errors="*{questionText}"></span>
+						</td>
+					</tr>
+
+					<tr>
+						<th>選択肢A</th>
+						<td>
+							<input type="text" th:field="*{choiceA}" />
+							<span class="form-error" th:if="${#fields.hasErrors('choiceA')}"
+								th:errors="*{choiceA}"></span>
+						</td>
+					</tr>
+
+					<tr>
+						<th>選択肢B</th>
+						<td>
+							<input type="text" th:field="*{choiceB}" />
+							<span class="form-error" th:if="${#fields.hasErrors('choiceB')}"
+								th:errors="*{choiceB}"></span>
+						</td>
+					</tr>
+
+					<tr>
+						<th>選択肢C</th>
+						<td>
+							<input type="text" th:field="*{choiceC}" />
+							<span class="form-error" th:if="${#fields.hasErrors('choiceC')}"
+								th:errors="*{choiceC}"></span>
+						</td>
+					</tr>
+
+					<tr>
+						<th>選択肢D</th>
+						<td>
+							<input type="text" th:field="*{choiceD}" />
+							<span class="form-error" th:if="${#fields.hasErrors('choiceD')}"
+								th:errors="*{choiceD}"></span>
+						</td>
+					</tr>
+
+					<tr>
+						<th>正解</th>
+						<td>
+							<input class="form-input" type="text" th:field="*{correctAnswer}" />
+							<span class="form-error" th:if="${#fields.hasErrors('correctAnswer')}"
+								th:errors="*{correctAnswer}"></span>
+						</td>
+					</tr>
+
+					<tr>
+						<th>解説</th>
+						<td>
+							<textarea th:field="*{explanation}"></textarea>
+							<span class="form-error" th:if="${#fields.hasErrors('explanation')}"
+								th:errors="*{explanation}"></span>
+						</td>
+					</tr>
 				</table>
-				
-				<br><br>
-				
-				<input type="submit" value="更新する">		
-			</form>
-	</div>	
-	
 
+				<br><br>
+
+				<input class="btn-primary" type="submit" value="更新する">
+			</form>
+		</div>
+	</div>
 </body>
 
 </html>
