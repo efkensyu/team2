@@ -90,5 +90,9 @@ public class Team2QuestionsService {
 			}
 		}
 	}
+
+	public int countByUserId(int userId) {
+		return questionsRepository.countByUserId(userId);
+	}
 }
 	

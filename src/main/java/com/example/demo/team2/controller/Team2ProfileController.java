@@ -21,6 +21,8 @@ import com.example.demo.team2.form.Team2PasswordEditForm;
 import com.example.demo.team2.form.Team2ProfileDeleteForm;
 import com.example.demo.team2.form.Team2ProfileEditForm;
 import com.example.demo.team2.repository.Team2UserRepository;
+import com.example.demo.team2.service.Team2AnswersService;
+import com.example.demo.team2.service.Team2QuestionsService;
 import com.example.demo.team2.service.Team2StudyLogsService;
 import com.example.demo.team2.service.Team2UsersService;
 
@@ -33,6 +35,11 @@ public class Team2ProfileController {
 	@Autowired
 	private Team2StudyLogsService studyLogsService;
 
+	@Autowired
+	private Team2QuestionsService questionsService;
+
+	@Autowired
+	private Team2AnswersService answersService;
 	//プロフィール画面表示
 	@GetMapping("/team2/profile")
 	public String profile(HttpSession session, Model model) {
@@ -44,6 +51,8 @@ public class Team2ProfileController {
 		int monthly = studyLogsService.getMonthlyStudyTime(userId);
 		int weekly = studyLogsService.getWeeklyStudyTime(userId);
 		int daily = studyLogsService.getDailyStudyTime(userId);
+		int createdQuestionCount = questionsService.countByUserId(userId);
+		int answeredQuestionCount = answersService.countByUserId(userId);
 
 		//自分の学習記録一覧
 		List<Team2StudyLogs> myLogs = studyLogsService.findByUserId(userId);
@@ -61,6 +70,9 @@ public class Team2ProfileController {
 
 		model.addAttribute("dailyHours", daily / 60);
 		model.addAttribute("dailyMinutes", daily % 60);
+		
+		model.addAttribute("createdQuestionCount", createdQuestionCount);
+		model.addAttribute("answeredQuestionCount", answeredQuestionCount);
 
 		System.out.println("プロフィール画面へ遷移");
 		return "team2/users/team2_profile";

@@ -104,6 +104,10 @@
 	color: #333333;
 }
 
+.summary-wide {
+	grid-column: span 2;
+}
+
 .study-summary {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);

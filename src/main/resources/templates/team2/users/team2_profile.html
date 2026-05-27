@@ -59,6 +59,16 @@
 				<div class="summary-label" th:text="今日の学習時間"></div>
 				<div class="summary-value" th:text="${dailyHours} + '時間' + ${dailyMinutes} + '分'"></div>
 			</div>
+			
+			<div class="summary-card summary-wide">
+				<div class="summary-label">作成した問題数</div>
+				<div class="summary-value" th:text="${createdQuestionCount} + '問'"></div>
+			</div>
+
+			<div class="summary-card summary-wide">
+				<div class="summary-label">回答した問題数</div>
+				<div class="summary-value" th:text="${answeredQuestionCount} + '問'"></div>
+			</div>
 		</div>
 
 		<div class="profile-section-header">

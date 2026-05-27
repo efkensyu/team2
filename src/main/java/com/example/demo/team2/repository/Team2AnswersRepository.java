@@ -8,5 +8,7 @@ import com.example.demo.team2.entity.Team2Answers;
 
 public interface Team2AnswersRepository extends JpaRepository <Team2Answers, Integer>{
 	List<Team2Answers> findByUserIdOrderByCreatedAtDesc(int userId);
-
+	
+	//回答問題数
+	int countByUserId(int userId);
 }

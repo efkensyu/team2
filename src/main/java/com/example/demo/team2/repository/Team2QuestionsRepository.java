@@ -10,4 +10,6 @@ public interface Team2QuestionsRepository extends JpaRepository <Team2Questions,
 	//一覧表示
 	List<Team2Questions>findAllByOrderByCreatedAtDesc();
 	
+	//作成した問題数を表示
+	int countByUserId(int userId);
 }

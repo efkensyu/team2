@@ -29,4 +29,8 @@ public class Team2AnswersService {
 		return answersRepository.findById(answerId)
 				.orElseThrow(() -> new RuntimeException("回答が見つかりません"));
 	}
+
+	public int countByUserId(int userId) {
+		return answersRepository.countByUserId(userId);
+	}
 }
