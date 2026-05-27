@@ -55,6 +55,12 @@
 	background: #0000aa;
 }
 
+.question-list {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
 /* ===== 問題詳細 ===== */
 .question-detail{
 	text-align: center;
@@ -73,9 +79,11 @@
 	border-color: red;
 }
 .content-card{
-	max-width: 640px;
-	 margin: 0 auto;
+	width: 100%;
+	max-width: 900px;
+	margin: 0 auto;
 }
+
 /* ===== 詳細・作成・編集テーブル共通 ===== */
 
 .question-detail-table,
