@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+.questionl-wrapper {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
 /* ===== 問題一覧 ===== */
 .questionForm{
 	margin: 0 auto;
@@ -72,9 +77,13 @@
 	background-color:darkred;
 	border-color: red;
 }
-.content-card{
-	max-width: 640px;
-	 margin: 0 auto;
+.content-card {
+	max-width: 720px;
+	margin: 0 auto;
+	background: #ffffff;
+	border: 1px solid #e3e8f2;
+	border-radius: 14px;
+	padding: 28px 32px;
 }
 /* ===== 詳細・作成・編集テーブル共通 ===== */
 
