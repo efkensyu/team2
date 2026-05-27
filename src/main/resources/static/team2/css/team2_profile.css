@@ -11,6 +11,7 @@
 	align-items: center;
 	gap: 24px;
 	margin-bottom: 24px;
+	background: #ffffff;
 }
 
 .profile-icon {
@@ -54,6 +55,7 @@
 	border-radius: 8px;
 	text-decoration: none;
 	font-weight: bold;
+	background: #ffffff;
 }
 
 .profile-action-link,
@@ -150,6 +152,7 @@
 	border: 1px solid #cfcfcf;
 	border-radius: 8px;
 	padding: 24px 24px;
+	background: #ffffff;
 }
 
 .profile-log-card:hover {

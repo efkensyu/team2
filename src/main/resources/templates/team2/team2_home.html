@@ -20,24 +20,48 @@
 		<div class="home-menu">
 
 			<a th:href="@{/team2/profile}" class="home-menu-card">
-				<span class="home-menu-text" th:text="プロフィール"></span>
+				<span class="home-menu-content">
+					<span class="home-menu-text">プロフィール</span>
+					<span class="home-menu-description">
+						学習時間や自分の記録を確認できます
+					</span>
+				</span>
 			</a>
-
+			
 			<a th:href="@{/team2/logs}" class="home-menu-card">
-				<span class="home-menu-text" th:text="タイムライン"></span>
+				<span class="home-menu-content">
+					<span class="home-menu-text">タイムライン</span>
+					<span class="home-menu-description">
+						みんなの学習記録を閲覧できます
+					</span>
+				</span>
 			</a>
 
 			<a th:href="@{/team2/logs/create}" class="home-menu-card">
-				<span class="home-menu-text" th:text="学習記録登録"></span>
+				<span class="home-menu-content">
+					<span class="home-menu-text">学習記録登録</span>
+					<span class="home-menu-description">
+						学習内容を記録できます
+					</span>
+				</span>
 			</a>
 
 			<a th:href="@{/team2/questions}" class="home-menu-card">
-				<span class="home-menu-text" th:text="問題一覧"></span>
+				<span class="home-menu-content">
+					<span class="home-menu-text">問題一覧</span>
+					<span class="home-menu-description">
+						みんなが作成した問題を解けます
+					</span>
+				</span>
 			</a>
 
 			<a th:href="@{/team2/answers}" class="home-menu-card">
-
-				<span class="home-menu-text" th:text="採点結果一覧"></span>
+				<span class="home-menu-content">
+					<span class="home-menu-text">採点結果一覧</span>
+					<span class="home-menu-description">
+						過去の採点結果を確認できます
+					</span>
+				</span>
 			</a>
 
 		</div>

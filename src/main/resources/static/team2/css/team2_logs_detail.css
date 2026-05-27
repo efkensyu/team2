@@ -108,4 +108,17 @@
 
 .detail-delete-button {
 	min-width: 100px;
+	height: 44px;
+	background: #ff1a1a;
+	color: #ffffff;
+	border: 1px solid #ff1a1a;
+	border-radius: 8px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: 0.25s;
+}
+
+.detail-delete-button:hover {
+	background: #e00000;
+	border-color: #e00000;
 }
