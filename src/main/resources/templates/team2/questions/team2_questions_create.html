@@ -24,7 +24,7 @@
 			<p class="form-error" th:each="msg : ${errorMessage}" th:text="${msg}"></p>
 		</div>
 
-		<div class="content-card">
+		<div class="form-card">
 			<form method="post" th:action="@{/team2/questions/create}" th:object="${team2QuestionForm}">
 				<table class="questionForm">
 
