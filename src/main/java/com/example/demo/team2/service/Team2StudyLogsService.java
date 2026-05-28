@@ -21,7 +21,7 @@ public class Team2StudyLogsService {
 
 	//全件取得
 	public List<Team2StudyLogs> findAll() {
-		return studyLogsRepository.findAllByOrderByStudyDateDesc();
+		return studyLogsRepository.findAllByOrderByStudyDateDescCreatedAtDesc();
 	}
 
 	//1件登録
@@ -64,7 +64,7 @@ public class Team2StudyLogsService {
 
 	//自分の記録一覧
 	public List<Team2StudyLogs> findByUserId(int userId) {
-		return studyLogsRepository.findByUserIdOrderByStudyDateDesc(userId);
+		return studyLogsRepository.findByUserIdOrderByStudyDateDescCreatedAtDesc(userId);
 	}
 
 	//総学習時間
@@ -109,7 +109,7 @@ public class Team2StudyLogsService {
 		String trimmedKeyword = keyword.trim();
 
 		return studyLogsRepository
-				.findByStudyNameContainingOrUser_UserNameContainingOrField_FieldNameContainingOrderByStudyDateDesc(
+				.findByStudyNameContainingOrUser_UserNameContainingOrField_FieldNameContainingOrderByStudyDateDescCreatedAtDesc(
 						trimmedKeyword,
 						trimmedKeyword,
 						trimmedKeyword);

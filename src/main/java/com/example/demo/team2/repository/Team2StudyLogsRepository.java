@@ -12,10 +12,10 @@ import com.example.demo.team2.entity.Team2StudyLogs;
 @Repository
 public interface Team2StudyLogsRepository extends JpaRepository<Team2StudyLogs, Integer> {
 	//一覧表示
-	List<Team2StudyLogs> findAllByOrderByStudyDateDesc();
+	List<Team2StudyLogs> findAllByOrderByStudyDateDescCreatedAtDesc();
 	
 	//ユーザIDで検索
-	List<Team2StudyLogs> findByUserIdOrderByStudyDateDesc(int userId);
+	List<Team2StudyLogs> findByUserIdOrderByStudyDateDescCreatedAtDesc(int userId);
 	
 	//1件取得
 	@EntityGraph(attributePaths = {"user", "field"})
@@ -26,7 +26,7 @@ public interface Team2StudyLogsRepository extends JpaRepository<Team2StudyLogs, 
 	List<Team2StudyLogs> findByUserId(int userId);
 	
 	//検索
-	List<Team2StudyLogs> findByStudyNameContainingOrUser_UserNameContainingOrField_FieldNameContainingOrderByStudyDateDesc(
+	List<Team2StudyLogs> findByStudyNameContainingOrUser_UserNameContainingOrField_FieldNameContainingOrderByStudyDateDescCreatedAtDesc(
 	        String studyName,
 	        String userName,
 	        String fieldName
