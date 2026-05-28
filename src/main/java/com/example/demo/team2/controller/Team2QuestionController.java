@@ -2,7 +2,6 @@ package com.example.demo.team2.controller;
 
 import java.util.List;
 
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -139,6 +138,7 @@ public class Team2QuestionController {
 	@PostMapping("/team2/questions/{questionId}/delete")
 	public String deleteQuestion(@PathVariable int questionId) {
 		questionsService.delete(questionId);
+		
 		System.out.println("問題を削除する");
 		return "redirect:/team2/questions";
 	}

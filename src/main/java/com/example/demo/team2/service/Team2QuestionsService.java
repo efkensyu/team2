@@ -2,20 +2,25 @@ package com.example.demo.team2.service;
 
 import java.util.List;
 
+import jakarta.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import com.example.demo.team2.entity.Team2Questions;
 import com.example.demo.team2.form.Team2QuestionForm;
+import com.example.demo.team2.repository.Team2AnswersRepository;
 import com.example.demo.team2.repository.Team2QuestionsRepository;
 
 import lombok.RequiredArgsConstructor;
+
 
 @Service
 @RequiredArgsConstructor
 public class Team2QuestionsService {
 	
 	private final Team2QuestionsRepository questionsRepository;
+	private final Team2AnswersRepository answersRepository;
 	
 	//全件取得
 	public List<Team2Questions> findAll(){
@@ -36,7 +41,10 @@ public class Team2QuestionsService {
 				.orElseThrow(() -> new RuntimeException("問題が見つかりません"));
 	}
 	
+	//削除
+	@Transactional
 	public void delete(int questionId) {
+		answersRepository.deleteByQuestionId(questionId);
 		questionsRepository.deleteById(questionId);
 	}
 	
@@ -94,5 +102,7 @@ public class Team2QuestionsService {
 	public int countByUserId(int userId) {
 		return questionsRepository.countByUserId(userId);
 	}
+	
+
 }
 	

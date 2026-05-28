@@ -11,4 +11,7 @@ public interface Team2AnswersRepository extends JpaRepository <Team2Answers, Int
 	
 	//回答問題数
 	int countByUserId(int userId);
+	
+	//問題を削除
+	void deleteByQuestionId(int questionId);
 }
