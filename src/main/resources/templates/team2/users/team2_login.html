@@ -22,7 +22,7 @@
 			
 			<div class="success-message" th:if="${successMessage}" th:text="${successMessage}"></div>
 
-			<p th:if="${errorMessage}" th:text="${errorMessage}"></p>
+			<p th:if="${errorMessage}" th:text="${errorMessage}" class="form-error"></p>
 			<form method="post" th:action="@{/team2/login}" th:object="${team2LoginForm}">
 
 				<span class="form-label" th:text="ログインID"></span>
